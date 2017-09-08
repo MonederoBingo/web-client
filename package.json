@@ -9,15 +9,14 @@
     "open:src": "babel-node tools/srcServer.js",
     "lint": "node_modules/.bin/esw webpack.config.* src tools",
     "lint:watch": "npm run lint -- --watch",
-    "test": "mocha --reporter progress tools/testSetup.js \"src/**/*spec.js\"",
+    "test": "jest",
     "test:watch": "npm run test -- --watch",
     "clean-dist": "npm run remove-dist && mkdir dist",
     "remove-dist": "node_modules/.bin/rimraf ./dist",
     "build:html": "babel-node tools/buildHtml.js",
     "prebuild": "npm-run-all clean-dist build:html",
     "build": "babel-node tools/build.js",
-    "postbuild": "babel-node tools/distServer.js",
-    "jest": "jest"
+    "postbuild": "babel-node tools/distServer.js"
   },
   "repository": {
     "type": "git",
@@ -29,10 +28,10 @@
     "url": "https://github.com/GreatAppXYZ/web-client/issues"
   },
   "jest": {
-    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
-    "testFileExtensions": ["spec.js"],
+    "transform": {"^.+\\.js$": "<rootDir>/node_modules/babel-jest"},
+    "testMatch": ["**/__tests__/**/*.spec.js?(x)"],
     "moduleFileExtensions": ["js"],
-    "collectCoverage": "true"
+    "collectCoverage": true
   },
   "homepage": "https://github.com/GreatAppXYZ/web-client#readme",
   "dependencies": {
@@ -63,8 +62,8 @@
     "express": "4.13.4",
     "extract-text-webpack-plugin": "1.0.1",
     "file-loader": "0.8.5",
-    "jest": "^0.1.40",
-    "jest-cli": "^0.8.1",
+    "jest": "^21.0.1",
+    "jest-cli": "^21.0.1",
     "jquery": "2.2.3",
     "jsdom": "8.5.0",
     "lodash": "^4.17.4",

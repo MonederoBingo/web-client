@@ -1,5 +1,5 @@
-import * as types from '../actionTypes';
-import {beginAjaxCall} from '../ajaxStatusActions';
+import * as types from './actionTypes';
+import {beginAjaxCall} from './ajaxStatusActions';
 
 
 export function awardPointsSuccess(pointsAwarding) {
