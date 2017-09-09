@@ -1,11 +1,12 @@
-jest.enableAutomock();
-import * as pointsAwardingActions from '../../../src/actions/pointsAwardingActions.js';
-import * as ajaxStatusActions from '../../../src/actions/ajaxStatusActions';
-import * as pointsAwardingApi from '../../../src/api/pointsAwardingApi';
+describe("points awarding actions", () => {
 
+jest.enableAutomock();
+jest.unmock('../../../src/actions/pointsAwardingActions.js');
+const pointsAwardingActions = require('../../../src/actions/pointsAwardingActions.js');
+const pointsAwardingApi = require('../../../src/api/pointsAwardingApi');
+const ajaxStatusActions = require('../../../src/actions/ajaxStatusActions');
 const mockedDispatch = jest.fn();
 
-describe("points awarding actions", () => {
   describe("award points", () => {
     it("should return a function", () => {
       //when
@@ -37,7 +38,7 @@ describe("points awarding actions", () => {
         });
         it("should call award points api", () => {
               //given
-              pointsAwardingApi.awardPoints = jest.fn();
+              jest.spyOn(pointsAwardingApi, 'awardPoints');
               let dispatcher = pointsAwardingActions.awardPoints({phone: '555'});
 
               //when

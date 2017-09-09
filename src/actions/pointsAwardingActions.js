@@ -1,6 +1,6 @@
 import * as types from './actionTypes';
 import {beginAjaxCall} from './ajaxStatusActions';
-var pointsAwardingApi = require('../api/pointsAwardingApi');
+import * as pointsAwardingApi from '../api/pointsAwardingApi';
 
 export function awardPointsSuccess(pointsAwarding) {
   return {type: types.AWARD_POINTS_SUCCESS, pointsAwarding};
