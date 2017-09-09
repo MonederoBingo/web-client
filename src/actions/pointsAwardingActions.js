@@ -9,8 +9,8 @@ export function awardPointsSuccess(pointsAwarding) {
 
 export function awardPoints(pointsAwarding) {
   return function (dispatch) {
+    dispatch(beginAjaxCall());
     return new Promise((resolve, reject) => {
-      dispatch(beginAjaxCall());
       dispatch(awardPointsSuccess(pointsAwarding));
       resolve();
     });
