@@ -1,12 +1,21 @@
-describe("points awarding actions", () => {
-
 jest.enableAutomock();
 jest.unmock('../../../src/actions/pointsAwardingActions.js');
 const pointsAwardingActions = require('../../../src/actions/pointsAwardingActions.js');
 const pointsAwardingApi = require('../../../src/api/pointsAwardingApi');
 const ajaxStatusActions = require('../../../src/actions/ajaxStatusActions');
-const mockedDispatch = jest.fn();
+let mockedDispatch;
 
+describe("points awarding actions", () => {
+  beforeEach(function () {
+      mockedDispatch = jest.fn();
+      ajaxStatusActions.ajaxCallError.mockReturnValueOnce({type: 'BEGIN_AJAX_ERROR'});
+      ajaxStatusActions.beginAjaxCall.mockReturnValueOnce({type: 'BEGIN_AJAX_CALL'});
+      pointsAwardingApi.awardPoints.mockImplementation(() => {
+        return new Promise((resolve, reject) => {
+          resolve({success: true});
+        });
+      });
+  });
   describe("award points", () => {
     it("should return a function", () => {
       //when
@@ -15,7 +24,6 @@ const mockedDispatch = jest.fn();
       //then
       expect(typeof result === "function").toBe(true);
     });
-
     describe("returned function", () => {
         let returnedFunction = pointsAwardingActions.awardPoints();
         it("should return a promise", () => {
@@ -26,10 +34,6 @@ const mockedDispatch = jest.fn();
               expect(typeof result.then === "function").toBe(true);
         });
         it("should dispatch begin ajax call action", () => {
-              //given
-              ajaxStatusActions.beginAjaxCall = jest.fn();
-              ajaxStatusActions.beginAjaxCall.mockReturnValueOnce({type: 'BEGIN_AJAX_CALL'});
-
               //when
               returnedFunction(mockedDispatch);
 
@@ -39,13 +43,43 @@ const mockedDispatch = jest.fn();
         it("should call award points api", () => {
               //given
               jest.spyOn(pointsAwardingApi, 'awardPoints');
-              let dispatcher = pointsAwardingActions.awardPoints({phone: '555'});
+              returnedFunction = pointsAwardingActions.awardPoints({phone: '555'});
 
               //when
-              dispatcher(mockedDispatch);
+              returnedFunction(mockedDispatch);
 
               //then
               expect(pointsAwardingApi.awardPoints).toBeCalledWith({phone: '555'});
+        });
+        it("should dispatch ajax call error action if api returns service result success false", () => {
+              //given
+              pointsAwardingApi.awardPoints.mockImplementation(() => {
+                return new Promise((resolve, reject) => {
+                  resolve({success: false});
+                });
+              });
+
+              //when
+              return returnedFunction(mockedDispatch).then(serviceResult => {
+
+                //then
+                expect(mockedDispatch).toBeCalledWith({type: 'BEGIN_AJAX_ERROR'});
+              });
+        });
+        it("should not dispatch ajax call error action if api returns service result success true", () => {
+              //given
+              pointsAwardingApi.awardPoints.mockImplementation(() => {
+                return new Promise((resolve, reject) => {
+                  resolve({success: true});
+                });
+              });
+
+              //when
+              return returnedFunction(mockedDispatch).then(serviceResult => {
+
+                //then
+                expect(mockedDispatch).not.toBeCalledWith({type: 'BEGIN_AJAX_ERROR'});
+              });
         });
     });
   });
