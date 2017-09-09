@@ -1,5 +1,8 @@
-const pointsAwardingActions = require("../../../src/actions/pointsAwardingActions.js");
-const ajaxStatusActions = require('../../../src/actions/ajaxStatusActions');
+jest.enableAutomock();
+import * as pointsAwardingActions from '../../../src/actions/pointsAwardingActions.js';
+import * as ajaxStatusActions from '../../../src/actions/ajaxStatusActions';
+import * as pointsAwardingApi from '../../../src/api/pointsAwardingApi';
+
 const mockedDispatch = jest.fn();
 
 describe("points awarding actions", () => {
@@ -30,8 +33,18 @@ describe("points awarding actions", () => {
               returnedFunction(mockedDispatch);
 
               //then
-              console.log(mockedDispatch.mock.calls[1][0]);
-              expect(mockedDispatch.mock.calls[0][0]).toEqual({type: 'BEGIN_AJAX_CALL'});
+              expect(mockedDispatch).toBeCalledWith({type: 'BEGIN_AJAX_CALL'});
+        });
+        it("should call award points api", () => {
+              //given
+              pointsAwardingApi.awardPoints = jest.fn();
+              let dispatcher = pointsAwardingActions.awardPoints({phone: '555'});
+
+              //when
+              dispatcher(mockedDispatch);
+
+              //then
+              expect(pointsAwardingApi.awardPoints).toBeCalledWith({phone: '555'});
         });
     });
   });
