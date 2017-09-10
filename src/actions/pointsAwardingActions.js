@@ -11,8 +11,9 @@ export function awardPoints(pointsAwarding) {
   return function (dispatch) {
     dispatch(beginAjaxCall());
     return new Promise((resolve, reject) => {
-      pointsAwardingApi.awardPoints(pointsAwarding).then((serviceResult) => {
+      pointsAwardingApi.awardPoints(pointsAwarding).then(serviceResult => {
         if(serviceResult.success) {
+          dispatch({type: 'POINTS_AWARDING_SUCCESS', serviceResult});
 
         } else {
           dispatch(ajaxCallError());

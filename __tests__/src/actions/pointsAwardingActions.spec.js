@@ -81,6 +81,25 @@ describe("points awarding actions", () => {
                 expect(mockedDispatch).not.toBeCalledWith({type: 'BEGIN_AJAX_ERROR'});
               });
         });
+        it("should dispatch points awarding success action if api returns service result success true", () => {
+              //given
+              pointsAwardingApi.awardPoints.mockImplementation(() => {
+                return new Promise((resolve, reject) => {
+                  resolve({success: true});
+                });
+              });
+
+              //when
+              return returnedFunction(mockedDispatch).then(serviceResult => {
+                //then
+                expect(mockedDispatch).toBeCalledWith({
+                "serviceResult": {
+                      "success": true
+                },
+                 "type": "POINTS_AWARDING_SUCCESS"
+                });
+              });
+        });
     });
   });
 });
