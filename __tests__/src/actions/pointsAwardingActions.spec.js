@@ -3,13 +3,14 @@ jest.unmock('../../../src/actions/pointsAwardingActions.js');
 const pointsAwardingActions = require('../../../src/actions/pointsAwardingActions.js');
 const pointsAwardingApi = require('../../../src/api/pointsAwardingApi');
 const ajaxStatusActions = require('../../../src/actions/ajaxStatusActions');
+const types = require('../../../src/actions/actionTypes');
 let mockedDispatch;
 
 describe("points awarding actions", () => {
   beforeEach(function () {
       mockedDispatch = jest.fn();
-      ajaxStatusActions.ajaxCallError.mockReturnValueOnce({type: 'BEGIN_AJAX_ERROR'});
-      ajaxStatusActions.beginAjaxCall.mockReturnValueOnce({type: 'BEGIN_AJAX_CALL'});
+      ajaxStatusActions.ajaxCallError.mockReturnValueOnce({type: types.BEGIN_AJAX_ERROR});
+      ajaxStatusActions.beginAjaxCall.mockReturnValueOnce({type: types.BEGIN_AJAX_CALL});
       pointsAwardingApi.awardPoints.mockImplementation(() => {
         return new Promise((resolve, reject) => {
           resolve({success: true});
@@ -38,7 +39,7 @@ describe("points awarding actions", () => {
               returnedFunction(mockedDispatch);
 
               //then
-              expect(mockedDispatch).toBeCalledWith({type: 'BEGIN_AJAX_CALL'});
+              expect(mockedDispatch).toBeCalledWith({type: types.BEGIN_AJAX_CALL});
         });
         it("should call award points api", () => {
               //given
@@ -63,7 +64,7 @@ describe("points awarding actions", () => {
               return returnedFunction(mockedDispatch).catch(serviceResult => {
 
                 //then
-                expect(mockedDispatch).toBeCalledWith({type: 'BEGIN_AJAX_ERROR'});
+                expect(mockedDispatch).toBeCalledWith({type: types.BEGIN_AJAX_ERROR});
               });
         });
         it("should not dispatch ajax call error action if api returns service result success true", () => {
@@ -78,7 +79,7 @@ describe("points awarding actions", () => {
               return returnedFunction(mockedDispatch).then(serviceResult => {
 
                 //then
-                expect(mockedDispatch).not.toBeCalledWith({type: 'BEGIN_AJAX_ERROR'});
+                expect(mockedDispatch).not.toBeCalledWith({type: types.BEGIN_AJAX_ERROR});
               });
         });
         it("should dispatch points awarding success action if api returns service result success true", () => {

@@ -1,3 +1,5 @@
+import * as apiUtils from './apiUtils';
+
 export function awardPoints() {
-console.log('real call!');
+  apiUtils.callApiService("POST", "points", {"phone": "555"});
 }
