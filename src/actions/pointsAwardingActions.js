@@ -14,12 +14,12 @@ export function awardPoints(pointsAwarding) {
       pointsAwardingApi.awardPoints(pointsAwarding).then(serviceResult => {
         if(serviceResult.success) {
           dispatch({type: 'POINTS_AWARDING_SUCCESS', serviceResult});
-
+          resolve();
         } else {
           dispatch(ajaxCallError());
+          reject();
         }
       });
-      resolve();
     });
   };
 }

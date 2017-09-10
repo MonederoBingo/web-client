@@ -60,7 +60,7 @@ describe("points awarding actions", () => {
               });
 
               //when
-              return returnedFunction(mockedDispatch).then(serviceResult => {
+              return returnedFunction(mockedDispatch).catch(serviceResult => {
 
                 //then
                 expect(mockedDispatch).toBeCalledWith({type: 'BEGIN_AJAX_ERROR'});
@@ -91,6 +91,7 @@ describe("points awarding actions", () => {
 
               //when
               return returnedFunction(mockedDispatch).then(serviceResult => {
+
                 //then
                 expect(mockedDispatch).toBeCalledWith({
                 "serviceResult": {
