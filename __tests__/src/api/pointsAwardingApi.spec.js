@@ -15,5 +15,15 @@ describe("points awarding api", () => {
       //then
       expect(apiUtils.callApiService).toBeCalledWith('POST', 'points', {phone: '555'});
     });
+    it("should call apiUtils using parameter as body argument", () => {
+      //given
+      jest.spyOn(apiUtils, 'callApiService');
+
+      //when
+      pointsAwardingApi.awardPoints({phone: '333'});
+
+      //then
+      expect(apiUtils.callApiService).toBeCalledWith('POST', 'points', {phone: '333'});
+    });
   });
 });
