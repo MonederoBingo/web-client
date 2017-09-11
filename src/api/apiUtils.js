@@ -8,7 +8,10 @@ export function callApiService(method, path, body, addAuthorization = true, addC
         reject(error);
       });
     });
-  });
+  }).catch((error) => {
+     console.log(error);
+     reject(error);
+  });;
 }
 
 export function getApiRequestInfo(method, body, addAuthorization = true, addCsrfToken = true) {
@@ -86,7 +89,6 @@ export function getCookie(name) {
   if (!document.cookie) {
     return null;
   }
-
   const xsrfCookies = document.cookie.split(';')
     .map(c => c.trim())
     .filter(c => c.startsWith(name + '='));
@@ -109,7 +111,7 @@ export function processResponse(response, resolve, reject) {
 export function verifyAndSetCsrfCookie() {
   return new Promise((resolve) => {
     if (!this.getCookie('XSRF-TOKEN')) {
-      return fetch(ApiUtil.getApiUrl() + "test", {credentials: 'include'}).then(() => {
+      return fetch(this.getApiUrl() + "test", {credentials: 'include'}).then(() => {
         resolve();
       });
     }
