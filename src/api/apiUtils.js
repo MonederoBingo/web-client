@@ -9,8 +9,7 @@ export function callApiService(method, path, body, addAuthorization = true, addC
       });
     });
   }).catch((error) => {
-     console.log(error);
-     reject(error);
+     throw new Error(error);
   });;
 }
 
@@ -109,10 +108,12 @@ export function processResponse(response, resolve, reject) {
 }
 
 export function verifyAndSetCsrfCookie() {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     if (!this.getCookie('XSRF-TOKEN')) {
       return fetch(this.getApiUrl() + "test", {credentials: 'include'}).then(() => {
         resolve();
+      }).catch((error) => {
+        reject('error.retrieving.xsrf.token -> ' + error);
       });
     }
     resolve();

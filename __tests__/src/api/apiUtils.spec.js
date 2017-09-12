@@ -39,6 +39,21 @@ describe("api utils", () => {
           expect(fetch).toBeCalledWith('http://localhost:9090/test', {credentials: 'include'});
         });
     });
+    it("should return error if call to test service to get xsrf token fails", () => {
+        //given
+        document.cookie = "JSESSIONID=1234;";
+        fetch.mockImplementation(() => {
+          return new Promise((resolve, reject) => {
+            reject('timeout');
+          });
+        });
+
+        //when
+        return apiUtils.callApiService().catch((error) => {
+          //then
+          expect(error.toString()).toMatch('error.retrieving.xsrf.token -> timeout');
+        });
+    });
     it("should not call test service to get xsrf token if document has XSRF-TOKEN cookie", () => {
         //given
         fetch.mockClear();
