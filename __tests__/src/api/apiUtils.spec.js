@@ -23,20 +23,21 @@ describe("api utils", () => {
         document.cookie = null;
 
         //when
-        let result = apiUtils.callApiService();
+        return apiUtils.callApiService().then(() => {
 
-        //then
-        expect(fetch).toBeCalledWith('http://localhost:9090/test', {credentials: 'include'});
+          //then
+          expect(fetch).toBeCalledWith('http://localhost:9090/test', {credentials: 'include'});
+        });
     });
     it("should call test service to get xsrf token if document has no XSRF-TOKEN cookie", () => {
         //given
         document.cookie = "JSESSIONID=1234;";
 
         //when
-        let result = apiUtils.callApiService();
-
-        //then
-        expect(fetch).toBeCalledWith('http://localhost:9090/test', {credentials: 'include'});
+        return apiUtils.callApiService().then(() => {
+          //then
+          expect(fetch).toBeCalledWith('http://localhost:9090/test', {credentials: 'include'});
+        });
     });
     it("should not call test service to get xsrf token if document has XSRF-TOKEN cookie", () => {
         //given
@@ -44,11 +45,11 @@ describe("api utils", () => {
         document.cookie = "XSRF-TOKEN=1234;";
 
         //when
-        let result = apiUtils.callApiService();
+        return apiUtils.callApiService().then(() => {
 
-        //then
-        expect(fetch).not.toBeCalledWith('http://localhost:9090/test', {credentials: 'include'});
-
+          //then
+          expect(fetch).not.toBeCalledWith('http://localhost:9090/test', {credentials: 'include'});
+        });
     });
   });
 });
