@@ -150,5 +150,31 @@ describe("api utils", () => {
           expect(fetch.mock.calls[0][1].headers.get("X-XSRF-TOKEN")).toEqual("123456");
         });
     });
+    it("should call service including authorization header", () => {
+        //given
+        fetch.mockClear();
+        document.cookie = "XSRF-TOKEN=123456;";
+        sessionStorage.setItem("access_token", "98765");
+
+        //when
+        return apiUtils.callApiService('POST', 'myPath', {body: "content"}).then(() => {
+
+          //then
+          expect(fetch.mock.calls[0][1].headers.get("Authorization")).toEqual("Bearer 98765");
+        });
+    });
+    it("should not call service including authorization header if parameter is false", () => {
+        //given
+        fetch.mockClear();
+        document.cookie = "XSRF-TOKEN=123456;";
+        sessionStorage.setItem("access_token", "98765");
+
+        //when
+        return apiUtils.callApiService('POST', 'myPath', {body: "content"}, false).then(() => {
+
+          //then
+          expect(fetch.mock.calls[0][1].headers.get("Authorization")).toBe(null);
+        });
+    });
   });
 });

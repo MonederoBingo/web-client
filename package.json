@@ -40,7 +40,8 @@
     "collectCoverage": false,
     "setupFiles": [
       "./tools/setupJest.js"
-    ]
+    ],
+    "setupTestFrameworkScriptFile": "mock-local-storage"
   },
   "homepage": "https://github.com/GreatAppXYZ/web-client#readme",
   "dependencies": {
@@ -100,5 +101,8 @@
     "webpack-dev-middleware": "1.6.1",
     "webpack-hot-middleware": "2.10.0",
     "whatwg-fetch": "^2.0.3"
+  },
+  "devDependencies": {
+    "mock-local-storage": "^1.0.5"
   }
 }
