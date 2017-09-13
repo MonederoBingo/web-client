@@ -66,5 +66,89 @@ describe("api utils", () => {
           expect(fetch).not.toBeCalledWith('http://localhost:9090/test', {credentials: 'include'});
         });
     });
+    it("should call api service using path from parameter", () => {
+        //given
+        fetch.mockClear();
+        document.cookie = "XSRF-TOKEN=1234;";
+
+        //when
+        return apiUtils.callApiService('POST', 'myPath').then(() => {
+
+          //then
+          expect(fetch.mock.calls[0][0]).toEqual('http://localhost:9090/myPath');
+        });
+    });
+    it("should call api service using method from parameter", () => {
+        //given
+        fetch.mockClear();
+        document.cookie = "XSRF-TOKEN=1234;";
+
+        //when
+        return apiUtils.callApiService('POST', 'myPath').then(() => {
+
+          //then
+          expect(fetch.mock.calls[0][1].method).toEqual('POST');
+        });
+    });
+    it("should call api service including credentials", () => {
+        //given
+        fetch.mockClear();
+        document.cookie = "XSRF-TOKEN=1234;";
+
+        //when
+        return apiUtils.callApiService('POST', 'myPath').then(() => {
+
+          //then
+          expect(fetch.mock.calls[0][1].credentials).toEqual('include');
+        });
+    });
+    it("should call api service not including body if method is GET", () => {
+        //given
+        fetch.mockClear();
+        document.cookie = "XSRF-TOKEN=1234;";
+
+        //when
+        return apiUtils.callApiService('GET', 'myPath').then(() => {
+
+          //then
+          expect(fetch.mock.calls[0][1].body).toBeUndefined();
+        });
+    });
+    it("should call service including body from parameter", () => {
+        //given
+        fetch.mockClear();
+        document.cookie = "XSRF-TOKEN=1234;";
+
+        //when
+        return apiUtils.callApiService('POST', 'myPath', {body: "content"}).then(() => {
+
+          //then
+          expect(fetch.mock.calls[0][1].body).toEqual(JSON.stringify({body: "content"}));
+        });
+    });
+    it("should call service including content type header", () => {
+        //given
+        fetch.mockClear();
+        document.cookie = "XSRF-TOKEN=1234;";
+
+        //when
+        return apiUtils.callApiService('POST', 'myPath', {body: "content"}).then(() => {
+
+          //then
+          expect(fetch.mock.calls[0][1].headers.get("Content-Type")).toEqual("application/json");
+        });
+    });
+    it("should call service including xsrf header", () => {
+        //given
+        fetch.mockClear();
+        document.cookie = "XSRF-TOKEN=123456;";
+
+        //when
+        return apiUtils.callApiService('POST', 'myPath', {body: "content"}).then(() => {
+
+          //then
+          expect(fetch.mock.calls[0][1].headers.get("X-XSRF-TOKEN")).toEqual("123456");
+        });
+    });
   });
 });

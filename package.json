@@ -37,7 +37,7 @@
     "moduleFileExtensions": [
       "js"
     ],
-    "collectCoverage": true,
+    "collectCoverage": false,
     "setupFiles": [
       "./tools/setupJest.js"
     ]
