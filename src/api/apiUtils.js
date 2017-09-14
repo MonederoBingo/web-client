@@ -38,6 +38,7 @@ export function getApiRequestInfo(method, body, addAuthorization = true, addCsrf
 
 export function getApiUrl() {
   let url = '';
+
   switch (window.location.host) {
     case "test.localhost:8080":
       url = 'http://test.localhost:9090/';

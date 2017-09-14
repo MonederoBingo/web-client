@@ -240,5 +240,37 @@ describe("api utils", () => {
           expect(error.toString()).toMatch('error.when.calling.api.server');
         });
     });
+    var setHost = (host) => {
+      Object.defineProperty(location, 'host', {
+          value: host,
+          configurable: true,
+        });
+    }
+    it("should call api service in test.localhost environment", () => {
+        //given
+        fetch.mockClear();
+        document.cookie = "XSRF-TOKEN=1234;";
+        setHost("test.localhost:8080");
+
+        //when
+        return apiUtils.callApiService('POST', '').then(() => {
+
+          //then
+          expect(fetch.mock.calls[0][0]).toEqual('http://test.localhost:9090/');
+        });
+    });
+    it("should call api service in prod environment", () => {
+        //given
+        fetch.mockClear();
+        document.cookie = "XSRF-TOKEN=1234;";
+        setHost("www.greatapp.xyz");
+
+        //when
+        return apiUtils.callApiService('POST', '').then(() => {
+
+          //then
+          expect(fetch.mock.calls[0][0]).toEqual('http://prod.api.greatapp.xyz/');
+        });
+    });
   });
 });
