@@ -103,7 +103,7 @@ export function processResponse(response, resolve, reject) {
   if (response.ok) {
     resolve(response.json());
   } else {
-    reject('There was an error. Try again in a few minutes.');
+    reject('error.when.calling.api.server');
   }
 }
 

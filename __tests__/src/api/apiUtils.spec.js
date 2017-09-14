@@ -35,6 +35,7 @@ describe("api utils", () => {
 
         //when
         return apiUtils.callApiService().then(() => {
+
           //then
           expect(fetch).toBeCalledWith('http://localhost:9090/test', {credentials: 'include'});
         });
@@ -174,6 +175,69 @@ describe("api utils", () => {
 
           //then
           expect(fetch.mock.calls[0][1].headers.get("Authorization")).toBe(null);
+        });
+    });
+    it("should not call service including xsrf header if parameter is false", () => {
+        //given
+        fetch.mockClear();
+        document.cookie = "XSRF-TOKEN=123456;";
+
+        //when
+        return apiUtils.callApiService('POST', 'myPath', {body: "content"}, true, false).then(() => {
+
+          //then
+          expect(fetch.mock.calls[0][1].headers.get("X-XSRF-TOKEN")).toBe(null);
+        });
+    });
+    it("should return error if call to api service returns error", () => {
+        //given
+        fetch.mockClear();
+        document.cookie = "XSRF-TOKEN=123456;";
+        fetch.mockImplementation(() => {
+          return new Promise((resolve, reject) => {
+            reject('timeout');
+          });
+        });
+
+        //when
+        return apiUtils.callApiService('POST', 'myPath', {body: "content"}).catch((error) => {
+
+          //then
+          expect(error.toString()).toMatch('timeout');
+        });
+    });
+    it("should return json from api call response", () => {
+        //given
+        fetch.mockClear();
+        document.cookie = "XSRF-TOKEN=123456;";
+        fetch.mockImplementation(() => {
+          return new Promise((resolve, reject) => {
+            resolve({ok: true, json: () => {return "response_from_service"}});
+          });
+        });
+
+        //when
+        return apiUtils.callApiService('POST', 'myPath', {body: "content"}).then((response) => {
+
+          //then
+          expect(response).toMatch('response_from_service');
+        });
+    });
+    it("should return error if api call response is not ok", () => {
+        //given
+        fetch.mockClear();
+        document.cookie = "XSRF-TOKEN=123456;";
+        fetch.mockImplementation(() => {
+          return new Promise((resolve, reject) => {
+            resolve({ok: false, json: () => {}});
+          });
+        });
+
+        //when
+        return apiUtils.callApiService('POST', 'myPath', {body: "content"}).catch((error) => {
+
+          //then
+          expect(error.toString()).toMatch('error.when.calling.api.server');
         });
     });
   });
