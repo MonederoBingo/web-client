@@ -92,7 +92,6 @@ export function getCookie(name) {
   const xsrfCookies = document.cookie.split(';')
     .map(c => c.trim())
     .filter(c => c.startsWith(name + '='));
-
   if (xsrfCookies.length === 0) {
     return null;
   }

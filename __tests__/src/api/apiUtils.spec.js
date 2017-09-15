@@ -272,5 +272,75 @@ describe("api utils", () => {
           expect(fetch.mock.calls[0][0]).toEqual('http://prod.api.greatapp.xyz/');
         });
     });
+    it("should call api service in uat environment", () => {
+        //given
+        fetch.mockClear();
+        document.cookie = "XSRF-TOKEN=1234;";
+        setHost("test.greatapp.xyz");
+
+        //when
+        return apiUtils.callApiService('POST', '').then(() => {
+
+          //then
+          expect(fetch.mock.calls[0][0]).toEqual('http://uat.api.greatapp.xyz/');
+        });
+    });
+    it("should return auth url for test.localhost env", () => {
+        //given
+        fetch.mockClear();
+        document.cookie = "";
+        setHost("test.localhost:8080");
+
+        //when
+        var authUrl = apiUtils.getAuthUrl();
+
+        //then
+        expect(authUrl).toEqual('http://test.localhost:9000/');
+    });
+    it("should return auth url for prod env", () => {
+        //given
+        fetch.mockClear();
+        document.cookie = "";
+        setHost("www.greatapp.xyz");
+
+        //when
+        var authUrl = apiUtils.getAuthUrl();
+
+        //then
+        expect(authUrl).toEqual('http://prod.auth.greatapp.xyz/');
+    });
+    it("should return auth url for uat env", () => {
+        //given
+        document.cookie = "";
+        setHost("test.greatapp.xyz");
+
+        //when
+        var authUrl = apiUtils.getAuthUrl();
+
+        //then
+        expect(authUrl).toEqual('http://prod.auth.greatapp.xyz/');
+    });
+    it("should return cookie value", () => {
+        //given
+        document.cookie = "KEY1=1234";
+        document.cookie = "KEY2=4556;";
+
+        //when
+        var cookieValue = apiUtils.getCookie("KEY2");
+
+        //then
+        expect(cookieValue).toEqual('4556');
+    });
+    it("should return null if cookie is not found", () => {
+        //given
+        document.cookie = "KEY1=1234";
+        document.cookie = "KEY2=4556;";
+
+        //when
+        var cookieValue = apiUtils.getCookie("KEY3");
+
+        //then
+        expect(cookieValue).toBe(null);
+    });
   });
 });
