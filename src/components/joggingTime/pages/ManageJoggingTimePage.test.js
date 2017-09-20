@@ -1,6 +1,6 @@
 // import expect from 'expect';
 // import React from 'react';
-// import {mount, shallow} from 'enzyme';
+ import {mount, shallow} from 'enzyme';
 // import {ManageMyJoggingTimePage} from './ManageMyJoggingTimePage';
 //
 // describe('Manage MyJoggingTime Page', () => {
