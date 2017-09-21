@@ -42,6 +42,8 @@ const Header = ({loading, authenticated, onLogout, isManagerOrAdmin}) => {
           {" | "}
           <Link to="/myJoggingTimes" activeClassName="active">My Jogging Times</Link>
           {" | "}
+          <Link to="/awardPoints" activeClassName="active">Points Awarding</Link>
+          {" | "}
           <Link to="/myAvgSpeedPerWeek" activeClassName="active">Avg Speed Per Week</Link>
           {isManagerOrAdmin() &&
           " | "

@@ -7,6 +7,7 @@ import AccountPage from "./components/account/AccountPage";
 import MyJoggingTimesPage from "./components/joggingTime/pages/MyJoggingTimesPage";
 import UserJoggingTimesPage from "./components/joggingTime/pages/UserJoggingTimesPage";
 import ManageMyJoggingTimePage from "./components/joggingTime/pages/ManageMyJoggingTimePage";
+import PointsAwardingPage from "./components/pointsAwarding/PointsAwardingPage";
 import ManageUserJoggingTimePage from "./components/joggingTime/pages/ManageUserJoggingTimePage";
 import ManageRegistrationPage from "./components/registration/ManageRegistrationPage";
 import ManageLoginPage from "./components/login/ManageLoginPage";
@@ -37,11 +38,15 @@ export default (
     <IndexRoute component={HomePage}/>
     <Route path="login" component={ManageLoginPage}/>
     <Route path="register" component={ManageRegistrationPage}/>
-    <Route path="myJoggingTimes" component={MyJoggingTimesPage} onEnter={requireAuth}/>
+    <Route path="myJoggingTimes" component={MyJoggingTimesPage} //onEnter={requireAuth}
+    />
     <Route path="myJoggingTimes?from=:from&to=:to" component={MyJoggingTimesPage} onEnter={requireAuth}/>
     <Route path="user/:id/joggingTimes" component={ADMIN(UserJoggingTimesPage)} onEnter={requireAuth}/>
     <Route path="user/:id/joggingTimes?from=:from&to=:to" component={ADMIN(UserJoggingTimesPage)} onEnter={requireAuth}/>
     <Route path="myJoggingTime" component={ManageMyJoggingTimePage} onEnter={requireAuth}/>
+
+    <Route path="awardPoints" component={PointsAwardingPage} //onEnter={requireAuth}
+    />
     <Route path="myJoggingTime/:id" component={ManageMyJoggingTimePage} onEnter={requireAuth}/>
     <Route path="myJoggingTime/:id?from=:from&to=:to" component={ManageMyJoggingTimePage} onEnter={requireAuth}/>
     <Route path="user/:user_id/joggingTime/:jogging_times_id" component={ADMIN(ManageUserJoggingTimePage)} onEnter={requireAuth}/>
