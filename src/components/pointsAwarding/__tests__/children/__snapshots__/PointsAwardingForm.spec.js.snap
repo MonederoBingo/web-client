@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PointsAwardingForm should show initial layout 1`] = `
+Array [
+  <NumberInput
+    label="Phone #"
+    name="phoneNumber"
+    onChange={[Function]}
+    placeholder="Phone #"
+  />,
+  <NumberInput
+    label="Amount"
+    name="amount"
+    onChange={[Function]}
+    placeholder="Amount"
+  />,
+]
+`;
