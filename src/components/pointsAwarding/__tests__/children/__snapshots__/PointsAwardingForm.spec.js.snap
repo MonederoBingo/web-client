@@ -14,5 +14,19 @@ Array [
     onChange={[Function]}
     placeholder="Amount"
   />,
+  <TextInput
+    label="Sale Key"
+    name="saleKey"
+    onChange={[Function]}
+    placeholder=""
+  />,
+  <input
+    className="btn btn-primary"
+    disabled={[Function]}
+    id="save"
+    onClick={[Function]}
+    type="submit"
+    value="Save"
+  />,
 ]
 `;
