@@ -26,7 +26,6 @@ export class ManageMyJoggingTimePage extends React.Component {
     };
   }
 
-
   static updateJoggingMinutesTime(joggingTime, event) {
     let value = parseInt(event.target.value) || 0;
     let seconds = 0;

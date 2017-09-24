@@ -1,4 +1,5 @@
 import React from 'react';
+import expect from 'jest-matchers';
 import PointsAwardingForm from '../../children/PointsAwardingForm';
 import { shallow } from 'enzyme';
 import NumberInput from "../../../common/NumberInput";

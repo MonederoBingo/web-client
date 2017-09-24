@@ -1,19 +1,15 @@
 import React from 'react';
-import expect from 'expect';
+import expect from 'jest-matchers';
 import PointsAwardingPage from '../PointsAwardingPage';
 import PointsAwardingForm from '../children/PointsAwardingForm';
-import ReactShallowRenderer from 'react-test-renderer/shallow';
-const renderer = new ReactShallowRenderer();
+import { shallow } from 'enzyme';
 
 describe("PointsAwardingPage", () => {
   it("should render initial layout", () => {
      // when
-     renderer.render(<PointsAwardingPage />);
+     const wrapper = shallow(<PointsAwardingPage />);
 
      // then
-     const result = renderer.getRenderOutput();
-     expect(result.type).toBe('div');
-     expect(result.props.children).toEqual(
-        <PointsAwardingForm />);
+     expect(wrapper.find('div').children().nodes).toMatchSnapshot();
   });
 });
