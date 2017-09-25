@@ -77,7 +77,6 @@ const JoggingTimeForm = ({joggingTime, onSave, onDelete, onChange, onCancel, sav
   );
 };
 
-
 JoggingTimeForm.propTypes = {
   joggingTime: React.PropTypes.object.isRequired,
   onSave: React.PropTypes.func.isRequired,
