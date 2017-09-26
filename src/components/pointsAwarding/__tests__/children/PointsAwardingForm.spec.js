@@ -9,7 +9,8 @@ describe("PointsAwardingForm", () => {
     // given
     const props = {
       onChange: () => {},
-      onClick: () => {}
+      onClick: () => {},
+      saving: false
     };
      // when
      const wrapper = shallow(<PointsAwardingForm {...props}/>);
@@ -22,12 +23,13 @@ describe("PointsAwardingForm", () => {
     let called = false;
     const props = {
       onChange: () => { called = true; },
-      onClick: () => {}
+      onClick: () => {},
+      saving: false
     };
-    const phoneInput = shallow(<PointsAwardingForm {...props}/>).find("[name='" + field + "']");
+    const input = shallow(<PointsAwardingForm {...props}/>).find("[name='" + field + "']");
 
      // when
-    phoneInput.simulate('change');
+    input.simulate('change');
 
      // then
      expect(called).toBe(true);
@@ -44,12 +46,40 @@ describe("PointsAwardingForm", () => {
       onChange: () => {},
       onClick: () => { called = true; }
     };
-    const phoneInput = shallow(<PointsAwardingForm {...props}/>).find("[id='save']");
+    const submit = shallow(<PointsAwardingForm {...props}/>).find("[id='save']");
 
      // when
-    phoneInput.simulate('click');
+    submit.simulate('click');
 
      // then
      expect(called).toBe(true);
+  });
+  it("should disable submit if saving param returns true", () => {
+    // given
+    const props = {
+      onChange: () => {},
+      onClick: () => {},
+      saving: true
+    };
+
+     // when
+    const wrapper = shallow(<PointsAwardingForm {...props}/>).find("[id='save']");
+
+     // then
+     expect(wrapper.prop('disabled')).toBe(true);
+  });
+  it("should enable submit if saving param returns false", () => {
+    // given
+    const props = {
+      onChange: () => {},
+      onClick: () => {},
+      saving: false
+    };
+
+     // when
+    const wrapper = shallow(<PointsAwardingForm {...props}/>).find("[id='save']");
+
+     // then
+     expect(wrapper.prop('disabled')).toBe(false);
   });
 });

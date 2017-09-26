@@ -22,7 +22,7 @@ Array [
   />,
   <input
     className="btn btn-primary"
-    disabled={[Function]}
+    disabled={false}
     id="save"
     onClick={[Function]}
     type="submit"
