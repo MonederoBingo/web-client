@@ -8,7 +8,8 @@ describe("PointsAwardingForm", () => {
   it("should show initial layout", () => {
     // given
     const props = {
-      onChange: () => {}
+      onChange: () => {},
+      onClick: () => {}
     };
      // when
      const wrapper = shallow(<PointsAwardingForm {...props}/>);
@@ -20,7 +21,8 @@ describe("PointsAwardingForm", () => {
     // given
     let called = false;
     const props = {
-      onChange: () => { called = true; }
+      onChange: () => { called = true; },
+      onClick: () => {}
     };
     const phoneInput = shallow(<PointsAwardingForm {...props}/>).find("[name='" + field + "']");
 
@@ -34,5 +36,20 @@ describe("PointsAwardingForm", () => {
      fieldShouldCallOnChange("phoneNumber");
      fieldShouldCallOnChange("amount");
      fieldShouldCallOnChange("saleKey");
+  });
+  it("should call onClick when submit is clicked", () => {
+    // given
+    let called = false;
+    const props = {
+      onChange: () => {},
+      onClick: () => { called = true; }
+    };
+    const phoneInput = shallow(<PointsAwardingForm {...props}/>).find("[id='save']");
+
+     // when
+    phoneInput.simulate('click');
+
+     // then
+     expect(called).toBe(true);
   });
 });
