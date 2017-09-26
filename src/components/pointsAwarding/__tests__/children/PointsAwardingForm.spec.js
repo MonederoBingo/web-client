@@ -16,18 +16,23 @@ describe("PointsAwardingForm", () => {
      // then
      expect(wrapper.find('div').children().nodes).toMatchSnapshot();
   });
-  it("should call onChange in phoneNumber", () => {
+  function fieldShouldCallOnChange(field) {
     // given
     let called = false;
     const props = {
       onChange: () => { called = true; }
     };
-    const phoneInput = shallow(<PointsAwardingForm {...props}/>).find('[name="phoneNumber"]');
+    const phoneInput = shallow(<PointsAwardingForm {...props}/>).find("[name='" + field + "']");
 
      // when
     phoneInput.simulate('change');
 
      // then
      expect(called).toBe(true);
+  }
+  it("should call onChange", () => {
+     fieldShouldCallOnChange("phoneNumber");
+     fieldShouldCallOnChange("amount");
+     fieldShouldCallOnChange("saleKey");
   });
 });
