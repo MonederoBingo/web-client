@@ -9,7 +9,7 @@ describe("PointsAwardingForm", () => {
     // given
     const props = {
       onChange: () => {},
-      onClick: () => {},
+      onSubmit: () => {},
       saving: false
     };
      // when
@@ -23,7 +23,7 @@ describe("PointsAwardingForm", () => {
     let called = false;
     const props = {
       onChange: () => { called = true; },
-      onClick: () => {},
+      onSubmit: () => {},
       saving: false
     };
     const input = shallow(<PointsAwardingForm {...props}/>).find("[name='" + field + "']");
@@ -39,12 +39,12 @@ describe("PointsAwardingForm", () => {
      fieldShouldCallOnChange("amount");
      fieldShouldCallOnChange("saleKey");
   });
-  it("should call onClick when submit is clicked", () => {
+  it("should call onSubmit when submit is clicked", () => {
     // given
     let called = false;
     const props = {
       onChange: () => {},
-      onClick: () => { called = true; }
+      onSubmit: () => { called = true; }
     };
     const submit = shallow(<PointsAwardingForm {...props}/>).find("[id='save']");
 
@@ -58,7 +58,7 @@ describe("PointsAwardingForm", () => {
     // given
     const props = {
       onChange: () => {},
-      onClick: () => {},
+      onSubmit: () => {},
       saving: true
     };
 
@@ -72,7 +72,7 @@ describe("PointsAwardingForm", () => {
     // given
     const props = {
       onChange: () => {},
-      onClick: () => {},
+      onSubmit: () => {},
       saving: false
     };
 

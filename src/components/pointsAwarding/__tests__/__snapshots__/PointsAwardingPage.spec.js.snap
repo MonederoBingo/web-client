@@ -4,6 +4,7 @@ exports[`PointsAwardingPage should render initial layout 1`] = `
 Array [
   <PointsAwardingForm
     onChange={[Function]}
+    onSubmit={[Function]}
     saving={false}
   />,
 ]

@@ -8,14 +8,18 @@ class PointsAwardingPage extends React.Component {
       saving: false
     };
   }
-  change() {
+  updateFieldsState() {
+
+  }
+  submit() {
 
   }
    render() {
      return (
        <div>
          <PointsAwardingForm
-           onChange={this.change}
+           onChange={this.updateFieldsState}
+           onSubmit={this.submit}
            saving={this.state.saving}
          />
        </div>

@@ -12,20 +12,20 @@ describe("PointsAwardingPage", () => {
     // then
     expect(wrapper.find('div').children().nodes).toMatchSnapshot();
   });
-  it("should call change method in form", () => {
+  it("should call updateFieldsState method in form", () => {
     // given
-    jest.spyOn(PointsAwardingPage.prototype, 'change');
+    jest.spyOn(PointsAwardingPage.prototype, 'updateFieldsState');
     const form = shallow(<PointsAwardingPage />).find('PointsAwardingForm');
 
     // when
     form.props().onChange();
 
     // then
-    expect(PointsAwardingPage.prototype.change).toHaveBeenCalled();
+    expect(PointsAwardingPage.prototype.updateFieldsState).toHaveBeenCalled();
   });
   it("should pass 'saving' from state to form", () => {
     // given
-    jest.spyOn(PointsAwardingPage.prototype, 'change');
+    jest.spyOn(PointsAwardingPage.prototype, 'updateFieldsState');
     const component = shallow(<PointsAwardingPage />);
 
     // when
@@ -33,5 +33,16 @@ describe("PointsAwardingPage", () => {
 
     // then
     expect(component.find('PointsAwardingForm').props().saving).toBe(true);
+  });
+  it("should call submit method in form", () => {
+    // given
+    jest.spyOn(PointsAwardingPage.prototype, 'submit');
+    const form = shallow(<PointsAwardingPage />).find('PointsAwardingForm');
+
+    // when
+    form.props().onSubmit();
+
+    // then
+    expect(PointsAwardingPage.prototype.submit).toHaveBeenCalled();
   });
 });
