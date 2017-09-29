@@ -14,7 +14,7 @@ describe("PointsAwardingPage", () => {
   });
   it("should call change method in form", () => {
     // given
-    spyOn(PointsAwardingPage.prototype, 'change').and.callThrough();
+    jest.spyOn(PointsAwardingPage.prototype, 'change');
     const form = shallow(<PointsAwardingPage />).find('PointsAwardingForm');
 
     // when
@@ -22,5 +22,16 @@ describe("PointsAwardingPage", () => {
 
     // then
     expect(PointsAwardingPage.prototype.change).toHaveBeenCalled();
+  });
+  it("should pass 'saving' from state to form", () => {
+    // given
+    jest.spyOn(PointsAwardingPage.prototype, 'change');
+    const component = shallow(<PointsAwardingPage />);
+
+    // when
+    component.setState({saving: true});
+
+    // then
+    expect(component.find('PointsAwardingForm').props().saving).toBe(true);
   });
 });
