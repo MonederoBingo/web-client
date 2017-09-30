@@ -5,13 +5,12 @@ import { shallow } from 'enzyme';
 import NumberInput from "../../../common/NumberInput";
 
 describe("PointsAwardingForm", () => {
+  const props = {
+    onChange: () => {},
+    onSubmit: () => {},
+    saving: false,
+  };
   it("should show initial layout", () => {
-    // given
-    const props = {
-      onChange: () => {},
-      onSubmit: () => {},
-      saving: false
-    };
      // when
      const wrapper = shallow(<PointsAwardingForm {...props}/>);
 
@@ -21,11 +20,7 @@ describe("PointsAwardingForm", () => {
   function fieldShouldCallOnChange(field) {
     // given
     let called = false;
-    const props = {
-      onChange: () => { called = true; },
-      onSubmit: () => {},
-      saving: false
-    };
+    props.onChange = () => { called = true; }
     const input = shallow(<PointsAwardingForm {...props}/>).find("[name='" + field + "']");
 
      // when
@@ -42,10 +37,7 @@ describe("PointsAwardingForm", () => {
   it("should call onSubmit when submit is clicked", () => {
     // given
     let called = false;
-    const props = {
-      onChange: () => {},
-      onSubmit: () => { called = true; }
-    };
+    props.onSubmit = () => { called = true; }
     const submit = shallow(<PointsAwardingForm {...props}/>).find("[id='save']");
 
      // when
@@ -56,11 +48,7 @@ describe("PointsAwardingForm", () => {
   });
   it("should disable submit if saving param returns true", () => {
     // given
-    const props = {
-      onChange: () => {},
-      onSubmit: () => {},
-      saving: true
-    };
+    props.saving = true;
 
      // when
     const wrapper = shallow(<PointsAwardingForm {...props}/>).find("[id='save']");
@@ -70,11 +58,7 @@ describe("PointsAwardingForm", () => {
   });
   it("should enable submit if saving param returns false", () => {
     // given
-    const props = {
-      onChange: () => {},
-      onSubmit: () => {},
-      saving: false
-    };
+    props.saving = false;
 
      // when
     const wrapper = shallow(<PointsAwardingForm {...props}/>).find("[id='save']");
