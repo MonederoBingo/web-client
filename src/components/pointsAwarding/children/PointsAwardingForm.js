@@ -13,7 +13,13 @@ const PointsAwardingForm = (props) => {
          value={props.pointsAwarding.phoneNumber}
          />
 
-       <NumberInput name="amount" label="Amount" onChange={props.onChange} placeholder="Amount"/>
+       <NumberInput
+         name="amount"
+         label="Amount"
+         onChange={props.onChange}
+         placeholder="Amount"
+         value={props.pointsAwarding.amount}
+         />
        <TextInput name="saleKey" label="Sale Key" onChange={props.onChange} placeholder=""/>
        <input id="save" type="submit" disabled={props.saving} value="Save" className="btn btn-primary" onClick={props.onSubmit} />
      </div>
