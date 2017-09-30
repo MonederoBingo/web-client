@@ -2,11 +2,12 @@
 
 exports[`PointsAwardingForm should show initial layout 1`] = `
 Array [
-  <NumberInput
+  <TextInput
     label="Phone #"
     name="phoneNumber"
     onChange={[Function]}
     placeholder="Phone #"
+    value=""
   />,
   <NumberInput
     label="Amount"

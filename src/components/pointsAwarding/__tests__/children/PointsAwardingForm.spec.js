@@ -6,6 +6,9 @@ import NumberInput from "../../../common/NumberInput";
 
 describe("PointsAwardingForm", () => {
   const props = {
+    pointsAwarding: {
+      phoneNumber: "",
+    },
     onChange: () => {},
     onSubmit: () => {},
     saving: false,
@@ -20,7 +23,7 @@ describe("PointsAwardingForm", () => {
   function fieldShouldCallOnChange(field) {
     // given
     let called = false;
-    props.onChange = () => { called = true; }
+    props.onChange = () => { called = true; };
     const input = shallow(<PointsAwardingForm {...props}/>).find("[name='" + field + "']");
 
      // when
@@ -37,7 +40,7 @@ describe("PointsAwardingForm", () => {
   it("should call onSubmit when submit is clicked", () => {
     // given
     let called = false;
-    props.onSubmit = () => { called = true; }
+    props.onSubmit = () => { called = true; };
     const submit = shallow(<PointsAwardingForm {...props}/>).find("[id='save']");
 
      // when
@@ -65,5 +68,15 @@ describe("PointsAwardingForm", () => {
 
      // then
      expect(wrapper.prop('disabled')).toBe(false);
+  });
+  it("should set phone number from props", () => {
+    // given
+    props.pointsAwarding.phoneNumber = "123";
+
+     // when
+    const field = shallow(<PointsAwardingForm {...props}/>).find("[name='phoneNumber']");
+
+     // then
+     expect(field.prop('value')).toBe("123");
   });
 });
