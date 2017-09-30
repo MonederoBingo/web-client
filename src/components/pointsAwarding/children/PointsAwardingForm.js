@@ -28,7 +28,15 @@ const PointsAwardingForm = (props) => {
          placeholder=""
          value={props.pointsAwarding.saleKey}
          />
-       <input id="save" type="submit" disabled={props.saving} value="Save" className="btn btn-primary" onClick={props.onSubmit} />
+
+       <input
+         id="save"
+         type="submit"
+         disabled={props.saving}
+         value="Save"
+         className="btn btn-primary"
+         onClick={props.onSubmit}
+         />
      </div>
   );
 };

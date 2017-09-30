@@ -25,7 +25,6 @@ describe("PointsAwardingPage", () => {
   });
   it("should pass 'saving' from state to form", () => {
     // given
-    jest.spyOn(PointsAwardingPage.prototype, 'updateFieldsState');
     const component = shallow(<PointsAwardingPage />);
 
     // when
@@ -44,5 +43,15 @@ describe("PointsAwardingPage", () => {
 
     // then
     expect(PointsAwardingPage.prototype.submit).toHaveBeenCalled();
+  });
+  it("should pass pointsAwarding object from state to form", () => {
+    // given
+    const component = shallow(<PointsAwardingPage />);
+
+    // when
+    component.setState({pointsAwarding: {}});
+
+    // then
+    expect(component.find('PointsAwardingForm').props().pointsAwarding).toEqual({});
   });
 });

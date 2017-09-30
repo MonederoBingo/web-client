@@ -5,7 +5,8 @@ class PointsAwardingPage extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      saving: false
+      pointsAwarding: {},
+      saving: false,
     };
   }
   updateFieldsState() {
@@ -20,6 +21,7 @@ class PointsAwardingPage extends React.Component {
          <PointsAwardingForm
            onChange={this.updateFieldsState}
            onSubmit={this.submit}
+           pointsAwarding={this.state.pointsAwarding}
            saving={this.state.saving}
          />
        </div>
