@@ -9,6 +9,7 @@ describe("PointsAwardingForm", () => {
     pointsAwarding: {
       phoneNumber: "",
       amount: 0,
+      saleKey: "",
     },
     onChange: () => {},
     onSubmit: () => {},
@@ -89,5 +90,15 @@ describe("PointsAwardingForm", () => {
 
      // then
      expect(field.prop('value')).toBe(123);
+  });
+  it("should set sale key from props", () => {
+    // given
+    props.pointsAwarding.saleKey = "key";
+
+     // when
+    const field = shallow(<PointsAwardingForm {...props}/>).find("[name='saleKey']");
+
+     // then
+     expect(field.prop('value')).toBe("key");
   });
 });

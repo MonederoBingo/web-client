@@ -21,6 +21,7 @@ Array [
     name="saleKey"
     onChange={[Function]}
     placeholder=""
+    value=""
   />,
   <input
     className="btn btn-primary"

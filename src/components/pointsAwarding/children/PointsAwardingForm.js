@@ -20,7 +20,14 @@ const PointsAwardingForm = (props) => {
          placeholder="Amount"
          value={props.pointsAwarding.amount}
          />
-       <TextInput name="saleKey" label="Sale Key" onChange={props.onChange} placeholder=""/>
+
+       <TextInput
+         name="saleKey"
+         label="Sale Key"
+         onChange={props.onChange}
+         placeholder=""
+         value={props.pointsAwarding.saleKey}
+         />
        <input id="save" type="submit" disabled={props.saving} value="Save" className="btn btn-primary" onClick={props.onSubmit} />
      </div>
   );
