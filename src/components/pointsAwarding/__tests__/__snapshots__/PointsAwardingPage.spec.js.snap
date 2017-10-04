@@ -5,7 +5,11 @@ Array [
   <PointsAwardingForm
     onChange={[Function]}
     onSubmit={[Function]}
-    pointsAwarding={Object {}}
+    pointsAwarding={
+      Object {
+        "phoneNumber": "",
+      }
+    }
     saving={false}
   />,
 ]

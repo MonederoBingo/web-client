@@ -5,12 +5,18 @@ class PointsAwardingPage extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      pointsAwarding: {},
+      pointsAwarding: {
+        phoneNumber: ""
+      },
       saving: false,
     };
+    this.updateFieldsState = this.updateFieldsState.bind(this);
   }
-  updateFieldsState() {
-
+  updateFieldsState(event) {
+    const field = event.target.name;
+    let pointsAwarding = Object.assign({}, this.state.pointsAwarding);
+    pointsAwarding[field] = event.target.value;
+    return this.setState({pointsAwarding: pointsAwarding});
   }
   submit() {
 

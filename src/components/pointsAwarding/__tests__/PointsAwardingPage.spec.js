@@ -5,6 +5,15 @@ import PointsAwardingForm from '../children/PointsAwardingForm';
 import { shallow } from 'enzyme';
 
 describe("PointsAwardingPage", () => {
+  function createEvent(name, value) {
+    const event = {
+      target: {
+        name: name,
+        value: value,
+      }
+    };
+    return event;
+  }
   it("should render initial layout", () => {
     // when
     const wrapper = shallow(<PointsAwardingPage/>);
@@ -18,7 +27,7 @@ describe("PointsAwardingPage", () => {
     const form = shallow(<PointsAwardingPage />).find('PointsAwardingForm');
 
     // when
-    form.props().onChange();
+    form.props().onChange(createEvent("", ""));
 
     // then
     expect(PointsAwardingPage.prototype.updateFieldsState).toHaveBeenCalled();
@@ -53,5 +62,17 @@ describe("PointsAwardingPage", () => {
 
     // then
     expect(component.find('PointsAwardingForm').props().pointsAwarding).toEqual({});
+  });
+  it("should update phone number in state", () => {
+    // given
+    const component = shallow(<PointsAwardingPage />);
+    const form = component.find('PointsAwardingForm');
+    const event = createEvent("phoneNumber", "345");
+
+    // when
+    form.props().onChange(event);
+
+    // then
+    expect(component.instance().state.pointsAwarding.phoneNumber).toEqual("345");
   });
 });

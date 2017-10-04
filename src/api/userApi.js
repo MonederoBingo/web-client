@@ -1,21 +1,21 @@
-import apiUtils from "./apiUtils";
+import {callApiService} from "./apiUtils";
 
 class UserApi {
 
   static getAllUsers() {
-    return apiUtils.callApiService('GET', 'user/getAll', null);
+    return callApiService.callApiService('GET', 'user/getAll', null);
   }
 
   static createUser(user) {
-    return apiUtils.callApiService('POST', '/user/create', user);
+    return callApiService.callApiService('POST', '/user/create', user);
   }
 
   static updateUser(user) {
-    return apiUtils.callApiService('PUT', '/user/update', user);
+    return callApiService.callApiService('PUT', '/user/update', user);
   }
 
   static deleteUser(user) {
-    return apiUtils.callApiService('DELETE', '/user/delete', {user_id: user.user_id});
+    return callApiService.callApiService('DELETE', '/user/delete', {user_id: user.user_id});
   }
 }
 
