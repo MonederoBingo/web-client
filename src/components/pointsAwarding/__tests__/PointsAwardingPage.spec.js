@@ -75,4 +75,28 @@ describe("PointsAwardingPage", () => {
     // then
     expect(component.instance().state.pointsAwarding.phoneNumber).toEqual("345");
   });
+  it("should update amount in state", () => {
+    // given
+    const component = shallow(<PointsAwardingPage />);
+    const form = component.find('PointsAwardingForm');
+    const event = createEvent("amount", 100);
+
+    // when
+    form.props().onChange(event);
+
+    // then
+    expect(component.instance().state.pointsAwarding.amount).toEqual(100);
+  });
+  it("should update sale key in state", () => {
+    // given
+    const component = shallow(<PointsAwardingPage />);
+    const form = component.find('PointsAwardingForm');
+    const event = createEvent("saleKey", "key");
+
+    // when
+    form.props().onChange(event);
+
+    // then
+    expect(component.instance().state.pointsAwarding.saleKey).toEqual("key");
+  });
 });
