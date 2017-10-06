@@ -5,7 +5,11 @@ import PointsAwardingForm from '../children/PointsAwardingForm';
 import { shallow } from 'enzyme';
 
 describe("PointsAwardingPage", () => {
-  function createEvent(name, value) {
+  let component;
+  beforeEach(() => {
+    component = shallow(<PointsAwardingPage/>);
+  });
+  function withEvent(name, value) {
     const event = {
       target: {
         name: name,
@@ -15,27 +19,21 @@ describe("PointsAwardingPage", () => {
     return event;
   }
   it("should render initial layout", () => {
-    // when
-    const wrapper = shallow(<PointsAwardingPage/>);
-
     // then
-    expect(wrapper.find('div').children().nodes).toMatchSnapshot();
+    expect(component.find('div').children().nodes).toMatchSnapshot();
   });
   it("should call updateFieldsState method in form", () => {
     // given
     jest.spyOn(PointsAwardingPage.prototype, 'updateFieldsState');
-    const form = shallow(<PointsAwardingPage />).find('PointsAwardingForm');
+    const form = shallow(<PointsAwardingPage/>).find('PointsAwardingForm');
 
     // when
-    form.props().onChange(createEvent("", ""));
+    form.props().onChange(withEvent("", ""));
 
     // then
     expect(PointsAwardingPage.prototype.updateFieldsState).toHaveBeenCalled();
   });
   it("should pass 'saving' from state to form", () => {
-    // given
-    const component = shallow(<PointsAwardingPage />);
-
     // when
     component.setState({saving: true});
 
@@ -45,7 +43,7 @@ describe("PointsAwardingPage", () => {
   it("should call submit method in form", () => {
     // given
     jest.spyOn(PointsAwardingPage.prototype, 'submit');
-    const form = shallow(<PointsAwardingPage />).find('PointsAwardingForm');
+    const form = shallow(<PointsAwardingPage/>).find('PointsAwardingForm');
 
     // when
     form.props().onSubmit();
@@ -54,9 +52,6 @@ describe("PointsAwardingPage", () => {
     expect(PointsAwardingPage.prototype.submit).toHaveBeenCalled();
   });
   it("should pass pointsAwarding object from state to form", () => {
-    // given
-    const component = shallow(<PointsAwardingPage />);
-
     // when
     component.setState({pointsAwarding: {}});
 
@@ -65,9 +60,8 @@ describe("PointsAwardingPage", () => {
   });
   it("should update phone number in state", () => {
     // given
-    const component = shallow(<PointsAwardingPage />);
     const form = component.find('PointsAwardingForm');
-    const event = createEvent("phoneNumber", "345");
+    const event = withEvent("phoneNumber", "345");
 
     // when
     form.props().onChange(event);
@@ -77,9 +71,8 @@ describe("PointsAwardingPage", () => {
   });
   it("should update amount in state", () => {
     // given
-    const component = shallow(<PointsAwardingPage />);
     const form = component.find('PointsAwardingForm');
-    const event = createEvent("amount", 100);
+    const event = withEvent("amount", 100);
 
     // when
     form.props().onChange(event);
@@ -89,9 +82,8 @@ describe("PointsAwardingPage", () => {
   });
   it("should update sale key in state", () => {
     // given
-    const component = shallow(<PointsAwardingPage />);
     const form = component.find('PointsAwardingForm');
-    const event = createEvent("saleKey", "key");
+    const event = withEvent("saleKey", "key");
 
     // when
     form.props().onChange(event);

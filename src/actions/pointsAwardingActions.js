@@ -1,6 +1,5 @@
 import * as types from './actionTypes';
-import {beginAjaxCall} from './ajaxStatusActions';
-import {ajaxCallError} from './ajaxStatusActions';
+import {beginAjaxCall, ajaxCallError} from './ajaxStatusActions';
 import * as pointsAwardingApi from '../api/pointsAwardingApi';
 
 export function awardPointsSuccess(pointsAwarding) {
