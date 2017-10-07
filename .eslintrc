@@ -66,6 +66,7 @@
     "react/self-closing-comp": 1,
     "react/sort-comp": 1,
     "react/wrap-multilines": 1,
-    "comma-dangle": [0, "always-multiline"]
+    "comma-dangle": [0, "always-multiline"],
+    "import/namespace": 0
   }
 }

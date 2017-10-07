@@ -1,7 +1,10 @@
 import React from 'react';
 import PointsAwardingForm from './children/PointsAwardingForm';
+import * as pointsAwardingActions from "../../actions/pointsAwardingActions";
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
 
-class PointsAwardingPage extends React.Component {
+export class PointsAwardingPage extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
@@ -11,6 +14,7 @@ class PointsAwardingPage extends React.Component {
       saving: false,
     };
     this.updateFieldsState = this.updateFieldsState.bind(this);
+    this.submit = this.submit.bind(this);
   }
   updateFieldsState(event) {
     const field = event.target.name;
@@ -19,7 +23,7 @@ class PointsAwardingPage extends React.Component {
     return this.setState({pointsAwarding: pointsAwarding});
   }
   submit() {
-
+     this.props.actions.awardPoints();
   }
    render() {
      return (
@@ -35,4 +39,16 @@ class PointsAwardingPage extends React.Component {
    }
 }
 
-export default PointsAwardingPage;
+function mapStateToProps(state, ownProps) {
+  return {
+
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(pointsAwardingActions, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PointsAwardingPage);

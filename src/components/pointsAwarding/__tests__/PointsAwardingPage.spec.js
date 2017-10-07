@@ -1,11 +1,15 @@
 import React from 'react';
 import expect from 'jest-matchers';
-import PointsAwardingPage from '../PointsAwardingPage';
+import ConnectedPointsAwardingPage, { PointsAwardingPage } from '../PointsAwardingPage';
 import PointsAwardingForm from '../children/PointsAwardingForm';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
+import * as pointsAwardingActions from "../../../actions/pointsAwardingActions";
+import configureStore from 'redux-mock-store';
+import {Provider} from 'react-redux';
 
 describe("PointsAwardingPage", () => {
   let component;
+  const mockStore = configureStore();
   beforeEach(() => {
     component = shallow(<PointsAwardingPage/>);
   });
@@ -42,14 +46,17 @@ describe("PointsAwardingPage", () => {
   });
   it("should call submit method in form", () => {
     // given
-    jest.spyOn(PointsAwardingPage.prototype, 'submit');
-    const form = shallow(<PointsAwardingPage/>).find('PointsAwardingForm');
+    const spy = jest.spyOn(PointsAwardingPage.prototype, 'submit');
+    const actions = {
+      awardPoints: () => {}
+    };
+    const form = shallow(<PointsAwardingPage actions={actions}/>).find('PointsAwardingForm');
 
     // when
     form.props().onSubmit();
 
     // then
-    expect(PointsAwardingPage.prototype.submit).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalled();
   });
   it("should pass pointsAwarding object from state to form", () => {
     // when
@@ -90,5 +97,28 @@ describe("PointsAwardingPage", () => {
 
     // then
     expect(component.instance().state.pointsAwarding.saleKey).toEqual("key");
+  });
+  it("should map award points actions to props", () => {
+    // given
+    const connectedComponent = mount( <Provider store={mockStore()}><ConnectedPointsAwardingPage /></Provider> );
+
+    // when
+    const component = connectedComponent.find('PointsAwardingPage');
+
+    // then
+    expect(component.props().actions.awardPoints).toBeInstanceOf(Function);
+  });
+  it("should call award points action on submit", () => {
+    // given
+    const connectedComponent = mount( <Provider store={mockStore()}><ConnectedPointsAwardingPage /></Provider> );
+    const component = connectedComponent.find('PointsAwardingPage');
+    const form = component.find('PointsAwardingForm');
+    component.props().actions.awardPoints = jest.fn();
+
+    // when
+    form.props().onSubmit();
+
+    // then
+    expect(component.props().actions.awardPoints).toHaveBeenCalled();
   });
 });
