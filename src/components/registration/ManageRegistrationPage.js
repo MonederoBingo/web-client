@@ -96,12 +96,6 @@ export class ManageRegistrationPage extends React.Component {
   }
 }
 
-ManageRegistrationPage.propTypes = {
-  actions: PropTypes.object.isRequired,
-  registrationResult: PropTypes.object.isRequired,
-  user: PropTypes.object.isRequired
-};
-
 ManageRegistrationPage.contextTypes = {
   router: PropTypes.object
 };
