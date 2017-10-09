@@ -50,14 +50,4 @@ const RegistrationForm = ({user, onSave, onChange, onCancel, saving, errors}) =>
   );
 };
 
-
-RegistrationForm.propTypes = {
-  user: React.PropTypes.object.isRequired,
-  onSave: React.PropTypes.func.isRequired,
-  onChange: React.PropTypes.func.isRequired,
-  onCancel: React.PropTypes.func.isRequired,
-  saving: React.PropTypes.bool,
-  errors: React.PropTypes.object
-};
-
 export default RegistrationForm;

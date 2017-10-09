@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RegistrationForm should show initial layout 1`] = `
+Array [
+  <TextInput
+    error=""
+    label="Email"
+    name="email"
+    onChange={[Function]}
+    placeholder="Email"
+    value=""
+  />,
+  <PasswordInput
+    error=""
+    label="Password"
+    name="password"
+    onChange={[Function]}
+    placeholder="Password"
+    value=""
+  />,
+  <input
+    className="btn btn-primary"
+    disabled={undefined}
+    onClick={undefined}
+    style={
+      Object {
+        "marginRight": 50,
+        "marginTop": 10,
+      }
+    }
+    type="submit"
+    value="Save"
+  />,
+  <input
+    className="btn btn-default"
+    id="cancel"
+    onClick={undefined}
+    style={
+      Object {
+        "marginRight": 20,
+        "marginTop": 10,
+      }
+    }
+    type="submit"
+    value="Cancel"
+  />,
+]
+`;
