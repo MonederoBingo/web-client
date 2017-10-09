@@ -10,7 +10,7 @@ export function callApiService(method, path, body, addAuthorization = true, addC
     });
   }).catch((error) => {
      throw new Error(error);
-  });;
+  });
 }
 
 export function getApiRequestInfo(method, body, addAuthorization = true, addCsrfToken = true) {

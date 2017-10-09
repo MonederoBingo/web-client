@@ -1,6 +1,6 @@
 jest.enableAutomock();
-jest.unmock('../../../src/api/apiUtils');
-const apiUtils = require("../../../src/api/apiUtils");
+jest.unmock('../apiUtils');
+const apiUtils = require("../apiUtils");
 
 describe("api utils", () => {
   beforeEach(function () {
@@ -212,7 +212,11 @@ describe("api utils", () => {
         document.cookie = "XSRF-TOKEN=123456;";
         fetch.mockImplementation(() => {
           return new Promise((resolve, reject) => {
-            resolve({ok: true, json: () => {return "response_from_service"}});
+            resolve({
+              ok: true, json: () => {
+              return "response_from_service";
+              }
+            });
           });
         });
 
@@ -240,12 +244,12 @@ describe("api utils", () => {
           expect(error.toString()).toMatch('error.when.calling.api.server');
         });
     });
-    var setHost = (host) => {
+    const setHost = (host) => {
       Object.defineProperty(location, 'host', {
           value: host,
           configurable: true,
         });
-    }
+    };
     it("should call api service in test.localhost environment", () => {
         //given
         fetch.mockClear();
