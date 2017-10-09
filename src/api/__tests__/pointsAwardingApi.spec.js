@@ -1,7 +1,7 @@
 jest.enableAutomock();
-jest.unmock('../../../src/api/pointsAwardingApi.js');
-const pointsAwardingApi = require('../../../src/api/pointsAwardingApi.js');
-const apiUtils = require("../../../src/api/apiUtils");
+jest.unmock('../pointsAwardingApi.js');
+const pointsAwardingApi = require('../pointsAwardingApi.js');
+const apiUtils = require("../apiUtils");
 
 describe("points awarding api", () => {
   describe("awardPoints", () => {

@@ -296,7 +296,7 @@ describe("api utils", () => {
         setHost("test.localhost:8080");
 
         //when
-        var authUrl = apiUtils.getAuthUrl();
+        const authUrl = apiUtils.getAuthUrl();
 
         //then
         expect(authUrl).toEqual('http://test.localhost:9000/');
@@ -308,7 +308,7 @@ describe("api utils", () => {
         setHost("www.greatapp.xyz");
 
         //when
-        var authUrl = apiUtils.getAuthUrl();
+        const authUrl = apiUtils.getAuthUrl();
 
         //then
         expect(authUrl).toEqual('http://prod.auth.greatapp.xyz/');
@@ -319,7 +319,7 @@ describe("api utils", () => {
         setHost("test.greatapp.xyz");
 
         //when
-        var authUrl = apiUtils.getAuthUrl();
+        const authUrl = apiUtils.getAuthUrl();
 
         //then
         expect(authUrl).toEqual('http://prod.auth.greatapp.xyz/');
@@ -330,7 +330,7 @@ describe("api utils", () => {
         document.cookie = "KEY2=4556;";
 
         //when
-        var cookieValue = apiUtils.getCookie("KEY2");
+        const cookieValue = apiUtils.getCookie("KEY2");
 
         //then
         expect(cookieValue).toEqual('4556');
@@ -341,7 +341,7 @@ describe("api utils", () => {
         document.cookie = "KEY2=4556;";
 
         //when
-        var cookieValue = apiUtils.getCookie("KEY3");
+        const cookieValue = apiUtils.getCookie("KEY3");
 
         //then
         expect(cookieValue).toBe(null);

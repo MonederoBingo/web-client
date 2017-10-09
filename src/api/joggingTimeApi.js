@@ -1,4 +1,4 @@
-import apiUtils from "./apiUtils";
+import * as apiUtils from "./apiUtils";
 
 class JoggingTimeApi {
   static getAllJoggingTimes(filter) {
