@@ -4,6 +4,14 @@ exports[`RegistrationForm should show initial layout 1`] = `
 Array [
   <TextInput
     error=""
+    label="Company Name"
+    name="companyName"
+    onChange={[Function]}
+    placeholder="Company name"
+    value=""
+  />,
+  <TextInput
+    error=""
     label="Email"
     name="email"
     onChange={[Function]}

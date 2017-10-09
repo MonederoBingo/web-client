@@ -16,6 +16,14 @@ const RegistrationForm = ({user, onSave, onChange, onCancel, saving, errors}) =>
   return (
     <form>
       <TextInput
+        name="companyName"
+        label="Company Name"
+        placeholder="Company name"
+        value=""
+        onChange={() => {}}
+        error=""/>
+
+      <TextInput
         name="email"
         label="Email"
         placeholder="Email"
