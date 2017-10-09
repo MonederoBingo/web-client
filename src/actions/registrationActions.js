@@ -1,6 +1,6 @@
 /*eslint-disable import/no-duplicates*/
 import * as types from './actionTypes';
-import authorizationApi from '../api/authorizationApi';
+import * as authorizationApi from '../api/authorizationApi';
 import {beginAjaxCall} from './ajaxStatusActions';
 import {ajaxCallError} from './ajaxStatusActions';
 

@@ -1,7 +1,7 @@
 import * as apiUtils from './apiUtils';
 
 export function registerUser(user) {
-  return apiUtils.callApiService('POST', 'register', user, false);
+  return apiUtils.callApiService('POST', 'company/register', user, false);
 }
 
 export function getAccessToken(user) {

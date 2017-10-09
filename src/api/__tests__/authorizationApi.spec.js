@@ -15,7 +15,7 @@ describe("authorization api", () => {
       });
 
       //then
-      expect(apiUtils.callApiService).toBeCalledWith('POST', 'register', {
+      expect(apiUtils.callApiService).toBeCalledWith('POST', 'company/register', {
         email: 'a@a.com'
       }, false);
     });
