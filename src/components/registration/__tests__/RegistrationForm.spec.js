@@ -8,7 +8,8 @@ describe("RegistrationForm", () => {
   const props = {
     user: {
       email: "",
-      password: ""
+      password: "",
+      companyName: "",
     },
     errors: {
       email: "",
@@ -18,10 +19,10 @@ describe("RegistrationForm", () => {
   };
   it("should show initial layout", () => {
     // when
-    const wrapper = shallow(<RegistrationForm {...props}/>);
+    const component = shallow(<RegistrationForm {...props}/>);
 
     // then
-    expect(wrapper.children().nodes).toMatchSnapshot();
+    expect(component.children().nodes).toMatchSnapshot();
   });
   it("companyName should call onChange", () => {
     // given
@@ -77,54 +78,54 @@ describe("RegistrationForm", () => {
      // then
      expect(called).toBe(true);
   });
-  // it("should disable submit if saving param returns true", () => {
-  //   // given
-  //   props.saving = true;
-  //
-  //    // when
-  //   const wrapper = shallow(<RegistrationForm {...props}/>).find("[id='save']");
-  //
-  //    // then
-  //    expect(wrapper.prop('disabled')).toBe(true);
-  // });
-  // it("should enable submit if saving param returns false", () => {
-  //   // given
-  //   props.saving = false;
-  //
-  //    // when
-  //   const wrapper = shallow(<RegistrationForm {...props}/>).find("[id='save']");
-  //
-  //    // then
-  //    expect(wrapper.prop('disabled')).toBe(false);
-  // });
-  // it("should set phone number from props", () => {
-  //   // given
-  //   props.pointsAwarding.phoneNumber = "123";
-  //
-  //    // when
-  //   const field = shallow(<RegistrationForm {...props}/>).find("[name='phoneNumber']");
-  //
-  //    // then
-  //    expect(field.prop('value')).toBe("123");
-  // });
-  // it("should set amount from props", () => {
-  //   // given
-  //   props.pointsAwarding.amount = 123;
-  //
-  //    // when
-  //   const field = shallow(<RegistrationForm {...props}/>).find("[name='amount']");
-  //
-  //    // then
-  //    expect(field.prop('value')).toBe(123);
-  // });
-  // it("should set sale key from props", () => {
-  //   // given
-  //   props.pointsAwarding.saleKey = "key";
-  //
-  //    // when
-  //   const field = shallow(<RegistrationForm {...props}/>).find("[name='saleKey']");
-  //
-  //    // then
-  //    expect(field.prop('value')).toBe("key");
-  // });
+  it("should disable submit if saving param returns true", () => {
+    // given
+    props.saving = true;
+
+     // when
+    const component = shallow(<RegistrationForm {...props}/>).find("[id='submit']");
+
+     // then
+     expect(component.prop('disabled')).toBe(true);
+  });
+  it("should enable submit if saving param returns false", () => {
+    // given
+    props.saving = false;
+
+     // when
+    const component = shallow(<RegistrationForm {...props}/>).find("[id='submit']");
+
+     // then
+     expect(component.prop('disabled')).toBe(false);
+  });
+  it("should set companyName from props", () => {
+    // given
+    props.user.companyName = "name";
+
+     // when
+    const field = shallow(<RegistrationForm {...props}/>).find("[name='companyName']");
+
+     // then
+     expect(field.prop('value')).toBe("name");
+  });
+  it("should set email from props", () => {
+    // given
+    props.user.email = "a@a.com";
+
+     // when
+    const field = shallow(<RegistrationForm {...props}/>).find("[name='email']");
+
+     // then
+     expect(field.prop('value')).toBe("a@a.com");
+  });
+  it("should set password from props", () => {
+    // given
+    props.user.password = "password";
+
+     // when
+    const field = shallow(<RegistrationForm {...props}/>).find("[name='password']");
+
+     // then
+     expect(field.prop('value')).toBe("password");
+  });
 });

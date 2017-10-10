@@ -19,7 +19,7 @@ const RegistrationForm = ({user, onSave, onChange, onCancel, saving, errors}) =>
         name="companyName"
         label="Company Name"
         placeholder="Company name"
-        value=""
+        value={user.companyName}
         onChange={onChange}
         error=""/>
 
