@@ -23,23 +23,42 @@ describe("RegistrationForm", () => {
      // then
      expect(wrapper.children().nodes).toMatchSnapshot();
   });
-  // function fieldShouldCallOnChange(field) {
-  //   // given
-  //   let called = false;
-  //   props.onChange = () => { called = true; };
-  //   const input = shallow(<RegistrationForm {...props}/>).find("[name='" + field + "']");
-  //
-  //    // when
-  //   input.simulate('change');
-  //
-  //    // then
-  //    expect(called).toBe(true);
-  // }
-  // it("should call onChange", () => {
-  //    fieldShouldCallOnChange("phoneNumber");
-  //    fieldShouldCallOnChange("amount");
-  //    fieldShouldCallOnChange("saleKey");
-  // });
+  it("companyName should call onChange", () => {
+    // given
+    let called = false;
+    props.onChange = () => { called = true; };
+    const input = shallow(<RegistrationForm {...props}/>).find("[name='companyName']");
+
+     // when
+    input.simulate('change');
+
+     // then
+     expect(called).toBe(true);
+  });
+  it("email should call onChange", () => {
+    // given
+    let called = false;
+    props.onChange = () => { called = true; };
+    const input = shallow(<RegistrationForm {...props}/>).find("[name='email']");
+
+     // when
+    input.simulate('change');
+
+     // then
+     expect(called).toBe(true);
+  });
+  it("password should call onChange", () => {
+    // given
+    let called = false;
+    props.onChange = () => { called = true; };
+    const input = shallow(<RegistrationForm {...props}/>).find("[name='password']");
+
+     // when
+    input.simulate('change');
+
+     // then
+     expect(called).toBe(true);
+  });
   // it("should call onSubmit when submit is clicked", () => {
   //   // given
   //   let called = false;
