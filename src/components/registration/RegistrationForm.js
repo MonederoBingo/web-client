@@ -40,6 +40,7 @@ const RegistrationForm = ({user, onSave, onChange, onCancel, saving, errors}) =>
         error={errors.password}/>
 
       <input
+        id="submit"
         type="submit"
         disabled={saving}
         value={saving ? 'Saving...' : 'Save'}

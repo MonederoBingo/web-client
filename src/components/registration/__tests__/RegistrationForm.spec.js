@@ -1,76 +1,82 @@
 import React from 'react';
 import expect from 'jest-matchers';
 import RegistrationForm from '../RegistrationForm';
-import { shallow } from 'enzyme';
+import {shallow} from 'enzyme';
 import NumberInput from "../../common/NumberInput";
 
 describe("RegistrationForm", () => {
   const props = {
-      user: {
-        email: "",
-        password: "",
-      },
-      errors: {
-        email: "",
-        password: "",
-      },
-      onChange: () => {},
+    user: {
+      email: "",
+      password: ""
+    },
+    errors: {
+      email: "",
+      password: ""
+    },
+    onChange: () => {}
   };
   it("should show initial layout", () => {
-     // when
-     const wrapper = shallow(<RegistrationForm {...props} />);
+    // when
+    const wrapper = shallow(<RegistrationForm {...props}/>);
 
-     // then
-     expect(wrapper.children().nodes).toMatchSnapshot();
+    // then
+    expect(wrapper.children().nodes).toMatchSnapshot();
   });
   it("companyName should call onChange", () => {
     // given
     let called = false;
-    props.onChange = () => { called = true; };
+    props.onChange = () => {
+      called = true;
+    };
     const input = shallow(<RegistrationForm {...props}/>).find("[name='companyName']");
 
-     // when
+    // when
     input.simulate('change');
 
-     // then
-     expect(called).toBe(true);
+    // then
+    expect(called).toBe(true);
   });
   it("email should call onChange", () => {
     // given
     let called = false;
-    props.onChange = () => { called = true; };
+    props.onChange = () => {
+      called = true;
+    };
     const input = shallow(<RegistrationForm {...props}/>).find("[name='email']");
 
-     // when
+    // when
     input.simulate('change');
 
-     // then
-     expect(called).toBe(true);
+    // then
+    expect(called).toBe(true);
   });
   it("password should call onChange", () => {
     // given
     let called = false;
-    props.onChange = () => { called = true; };
+    props.onChange = () => {
+      called = true;
+    };
     const input = shallow(<RegistrationForm {...props}/>).find("[name='password']");
 
-     // when
+    // when
     input.simulate('change');
+
+    // then
+    expect(called).toBe(true);
+  });
+  it("should call onSubmit when submit is clicked", () => {
+    // given
+    let called = false;
+    props.onSave = () => { called = true; };
+    const submit = shallow(<RegistrationForm {...props}/>).find("[id='submit']");
+
+     // when
+    submit.simulate('click');
 
      // then
      expect(called).toBe(true);
   });
-  // it("should call onSubmit when submit is clicked", () => {
-  //   // given
-  //   let called = false;
-  //   props.onSubmit = () => { called = true; };
-  //   const submit = shallow(<RegistrationForm {...props}/>).find("[id='save']");
-  //
-  //    // when
-  //   submit.simulate('click');
-  //
-  //    // then
-  //    expect(called).toBe(true);
-  // });
   // it("should disable submit if saving param returns true", () => {
   //   // given
   //   props.saving = true;

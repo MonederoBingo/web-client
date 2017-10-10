@@ -29,6 +29,7 @@ Array [
   <input
     className="btn btn-primary"
     disabled={undefined}
+    id="submit"
     onClick={undefined}
     style={
       Object {
