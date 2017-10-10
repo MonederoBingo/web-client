@@ -267,26 +267,26 @@ describe("api utils", () => {
         //given
         fetch.mockClear();
         document.cookie = "XSRF-TOKEN=1234;";
-        setHost("www.greatapp.xyz");
+        setHost("www.monederobingo.com");
 
         //when
         return apiUtils.callApiService('POST', '').then(() => {
 
           //then
-          expect(fetch.mock.calls[0][0]).toEqual('http://prod.api.greatapp.xyz/');
+          expect(fetch.mock.calls[0][0]).toEqual('http://prod.api.monederobingo.com/');
         });
     });
     it("should call api service in uat environment", () => {
         //given
         fetch.mockClear();
         document.cookie = "XSRF-TOKEN=1234;";
-        setHost("test.greatapp.xyz");
+        setHost("test.monederobingo.com");
 
         //when
         return apiUtils.callApiService('POST', '').then(() => {
 
           //then
-          expect(fetch.mock.calls[0][0]).toEqual('http://uat.api.greatapp.xyz/');
+          expect(fetch.mock.calls[0][0]).toEqual('http://uat.api.monederobingo.com/');
         });
     });
     it("should return auth url for test.localhost env", () => {
@@ -305,24 +305,24 @@ describe("api utils", () => {
         //given
         fetch.mockClear();
         document.cookie = "";
-        setHost("www.greatapp.xyz");
+        setHost("www.monederobingo.com");
 
         //when
         const authUrl = apiUtils.getAuthUrl();
 
         //then
-        expect(authUrl).toEqual('http://prod.auth.greatapp.xyz/');
+        expect(authUrl).toEqual('http://prod.auth.monederobingo.com/');
     });
     it("should return auth url for uat env", () => {
         //given
         document.cookie = "";
-        setHost("test.greatapp.xyz");
+        setHost("test.monederobingo.com");
 
         //when
         const authUrl = apiUtils.getAuthUrl();
 
         //then
-        expect(authUrl).toEqual('http://prod.auth.greatapp.xyz/');
+        expect(authUrl).toEqual('http://prod.auth.monederobingo.com/');
     });
     it("should return cookie value", () => {
         //given

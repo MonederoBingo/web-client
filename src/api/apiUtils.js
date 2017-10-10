@@ -43,8 +43,8 @@ export function getApiUrl() {
     case "test.localhost:8080":
       url = 'http://test.localhost:9090/';
       break;
-    case "www.greatapp.xyz":
-      url = 'http://prod.api.greatapp.xyz/';
+    case "www.monederobingo.com":
+      url = 'http://prod.api.monederobingo.com/';
       break;
     case "https://greatapp-web-client.herokuapp.com":
       url = 'https://greatapp-api-services.herokuapp.com/';
@@ -52,8 +52,8 @@ export function getApiUrl() {
     case "greatapp-web-client.herokuapp.com":
       url = 'https://greatapp-api-services.herokuapp.com/';
       break;
-    case "test.greatapp.xyz":
-      url = 'http://uat.api.greatapp.xyz/';
+    case "test.monederobingo.com":
+      url = 'http://uat.api.monederobingo.com/';
       break;
     default :
       url = 'http://localhost:9090/';
@@ -67,8 +67,8 @@ export function getAuthUrl() {
     case "test.localhost:8080":
       url = 'http://test.localhost:9000/';
       break;
-    case "www.greatapp.xyz":
-      url = 'http://prod.auth.greatapp.xyz/';
+    case "www.monederobingo.com":
+      url = 'http://prod.auth.monederobingo.com/';
       break;
     case "https://greatapp-web-client.herokuapp.com":
       url = 'https://greatapp-authorization-service.herokuapp.com/';
@@ -76,8 +76,8 @@ export function getAuthUrl() {
     case "greatapp-web-client.herokuapp.com":
       url = 'https://greatapp-authorization-service.herokuapp.com/';
       break;
-    case "test.greatapp.xyz":
-      url = 'http://prod.auth.greatapp.xyz/';
+    case "test.monederobingo.com":
+      url = 'http://prod.auth.monederobingo.com/';
       break;
     default :
       url = 'http://localhost:9000/';
