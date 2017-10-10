@@ -75,16 +75,27 @@ describe("ManageRegistrationPage", () => {
     // then
     expect(component.find('RegistrationForm').props().user).toEqual({username: "username1"});
   });
-  it("should update phone number in state", () => {
+  it("should update companyName in state", () => {
     // given
     const form = component.find('RegistrationForm');
-    const event = withEvent("username", "newUsername");
+    const event = withEvent("companyName", "name");
 
     // when
     form.props().onChange(event);
 
     // then
-    expect(component.instance().state.user.username).toEqual("newUsername");
+    expect(component.instance().state.user.companyName).toEqual("name");
+  });
+  it("should update email in state", () => {
+    // given
+    const form = component.find('RegistrationForm');
+    const event = withEvent("email", "a@a.com");
+
+    // when
+    form.props().onChange(event);
+
+    // then
+    expect(component.instance().state.user.email).toEqual("a@a.com");
   });
   it("should update password in state", () => {
     // given
@@ -106,5 +117,19 @@ describe("ManageRegistrationPage", () => {
 
     // then
     expect(component.props().actions.createUser).toBeInstanceOf(Function);
+  });
+  it("should map user to props in connected component", () => {
+    // given
+    const connectedComponent = mount( <Provider store={mockStore()}><ConnectedManageRegistrationPage /></Provider> );
+
+    // when
+    const component = connectedComponent.find('ManageRegistrationPage');
+
+    // then
+    expect(component.props().user).toEqual({
+      email:'',
+      password:'',
+      companyName:'',
+    });
   });
 });
