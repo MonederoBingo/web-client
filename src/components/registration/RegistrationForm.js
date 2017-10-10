@@ -39,6 +39,14 @@ const RegistrationForm = ({user, onSave, onChange, onCancel, saving, errors}) =>
         onChange={onChange}
         error={errors.password}/>
 
+      <PasswordInput
+        name="passwordConfirmation"
+        label="Password Confirmation"
+        placeholder="Password Confirmation"
+        value=""
+        onChange={onChange}
+        error=""/>
+
       <input
         id="submit"
         type="submit"

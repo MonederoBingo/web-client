@@ -26,6 +26,14 @@ Array [
     placeholder="Password"
     value=""
   />,
+  <PasswordInput
+    error=""
+    label="Password Confirmation"
+    name="passwordConfirmation"
+    onChange={[Function]}
+    placeholder="Password Confirmation"
+    value=""
+  />,
   <input
     className="btn btn-primary"
     disabled={undefined}
