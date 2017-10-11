@@ -56,11 +56,11 @@ describe("ManageRegistrationPage", () => {
     };
     const comp = shallow(<ManageRegistrationPage actions={actions}/>);
     const form = comp.find('RegistrationForm');
-    const user = {
+    const registration = {
       email: 'email',
       password: 'password'
     };
-    comp.setState({user});
+    comp.setState({registration});
 
     // when
     form.props().onSave({preventDefault: () => {} });
@@ -68,12 +68,12 @@ describe("ManageRegistrationPage", () => {
     // then
     expect(spy).toHaveBeenCalled();
   });
-  it("should pass user object from state to form", () => {
+  it("should pass registration object from state to form", () => {
     // when
-    component.setState({user: {username: "username1"}});
+    component.setState({registration: {registrationname: "registrationname1"}});
 
     // then
-    expect(component.find('RegistrationForm').props().user).toEqual({username: "username1"});
+    expect(component.find('RegistrationForm').props().registration).toEqual({registrationname: "registrationname1"});
   });
   it("should update companyName in state", () => {
     // given
@@ -84,7 +84,7 @@ describe("ManageRegistrationPage", () => {
     form.props().onChange(event);
 
     // then
-    expect(component.instance().state.user.companyName).toEqual("name");
+    expect(component.instance().state.registration.companyName).toEqual("name");
   });
   it("should update email in state", () => {
     // given
@@ -95,7 +95,7 @@ describe("ManageRegistrationPage", () => {
     form.props().onChange(event);
 
     // then
-    expect(component.instance().state.user.email).toEqual("a@a.com");
+    expect(component.instance().state.registration.email).toEqual("a@a.com");
   });
   it("should update password in state", () => {
     // given
@@ -106,7 +106,7 @@ describe("ManageRegistrationPage", () => {
     form.props().onChange(event);
 
     // then
-    expect(component.instance().state.user.password).toEqual("password");
+    expect(component.instance().state.registration.password).toEqual("password");
   });
   it("should map registration actions to props", () => {
     // given
@@ -118,7 +118,7 @@ describe("ManageRegistrationPage", () => {
     // then
     expect(component.props().actions.createUser).toBeInstanceOf(Function);
   });
-  it("should map user to props in connected component", () => {
+  it("should map registration to props in connected component", () => {
     // given
     const connectedComponent = mount( <Provider store={mockStore()}><ConnectedManageRegistrationPage /></Provider> );
 
@@ -126,7 +126,7 @@ describe("ManageRegistrationPage", () => {
     const component = connectedComponent.find('ManageRegistrationPage');
 
     // then
-    expect(component.props().user).toEqual({
+    expect(component.props().registration).toEqual({
       email:'',
       password:'',
       companyName:'',

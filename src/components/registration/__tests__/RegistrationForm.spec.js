@@ -6,9 +6,10 @@ import NumberInput from "../../common/NumberInput";
 
 describe("RegistrationForm", () => {
   const props = {
-    user: {
+    registration: {
       email: "",
       password: "",
+      passwordConfirmation: "",
       companyName: "",
     },
     errors: {
@@ -66,6 +67,20 @@ describe("RegistrationForm", () => {
     // then
     expect(called).toBe(true);
   });
+  it("password confirmation should call onChange", () => {
+    // given
+    let called = false;
+    props.onChange = () => {
+      called = true;
+    };
+    const input = shallow(<RegistrationForm {...props}/>).find("[name='passwordConfirmation']");
+
+    // when
+    input.simulate('change');
+
+    // then
+    expect(called).toBe(true);
+  });
   it("should call onSubmit when submit is clicked", () => {
     // given
     let called = false;
@@ -100,7 +115,7 @@ describe("RegistrationForm", () => {
   });
   it("should set companyName from props", () => {
     // given
-    props.user.companyName = "name";
+    props.registration.companyName = "name";
 
      // when
     const field = shallow(<RegistrationForm {...props}/>).find("[name='companyName']");
@@ -110,7 +125,7 @@ describe("RegistrationForm", () => {
   });
   it("should set email from props", () => {
     // given
-    props.user.email = "a@a.com";
+    props.registration.email = "a@a.com";
 
      // when
     const field = shallow(<RegistrationForm {...props}/>).find("[name='email']");
@@ -120,10 +135,20 @@ describe("RegistrationForm", () => {
   });
   it("should set password from props", () => {
     // given
-    props.user.password = "password";
+    props.registration.password = "password";
 
      // when
     const field = shallow(<RegistrationForm {...props}/>).find("[name='password']");
+
+     // then
+     expect(field.prop('value')).toBe("password");
+  });
+  it("should set password confirmation from props", () => {
+    // given
+    props.registration.passwordConfirmation = "password";
+
+     // when
+    const field = shallow(<RegistrationForm {...props}/>).find("[name='passwordConfirmation']");
 
      // then
      expect(field.prop('value')).toBe("password");

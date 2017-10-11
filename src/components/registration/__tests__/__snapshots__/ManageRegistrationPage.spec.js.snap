@@ -12,8 +12,8 @@ Array [
     onCancel={[Function]}
     onChange={[Function]}
     onSave={[Function]}
+    registration={Object {}}
     saving={false}
-    user={Object {}}
   />,
 ]
 `;

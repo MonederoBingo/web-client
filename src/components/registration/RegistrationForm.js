@@ -2,7 +2,7 @@ import React from 'react';
 import TextInput from '../common/TextInput';
 import PasswordInput from '../common/PasswordInput';
 
-const RegistrationForm = ({user, onSave, onChange, onCancel, saving, errors}) => {
+const RegistrationForm = ({registration, onSave, onChange, onCancel, saving, errors}) => {
   let actionsStyle = {
     marginRight: 20,
     marginTop: 10
@@ -19,7 +19,7 @@ const RegistrationForm = ({user, onSave, onChange, onCancel, saving, errors}) =>
         name="companyName"
         label="Company Name"
         placeholder="Company name"
-        value={user.companyName}
+        value={registration.companyName}
         onChange={onChange}
         error=""/>
 
@@ -27,7 +27,7 @@ const RegistrationForm = ({user, onSave, onChange, onCancel, saving, errors}) =>
         name="email"
         label="Email"
         placeholder="Email"
-        value={user.email}
+        value={registration.email}
         onChange={onChange}
         error={errors.email}/>
 
@@ -35,7 +35,7 @@ const RegistrationForm = ({user, onSave, onChange, onCancel, saving, errors}) =>
         name="password"
         label="Password"
         placeholder="Password"
-        value={user.password}
+        value={registration.password}
         onChange={onChange}
         error={errors.password}/>
 
@@ -43,7 +43,7 @@ const RegistrationForm = ({user, onSave, onChange, onCancel, saving, errors}) =>
         name="passwordConfirmation"
         label="Password Confirmation"
         placeholder="Password Confirmation"
-        value=""
+        value={registration.passwordConfirmation}
         onChange={onChange}
         error=""/>
 

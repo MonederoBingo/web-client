@@ -11,7 +11,7 @@ export class ManageRegistrationPage extends React.Component {
     super(props, context);
 
     this.state = {
-      user: Object.assign({}, this.props.user),
+      registration: Object.assign({}, this.props.registration),
       serviceResult: Object.assign({}, this.props.registrationResult),
       errors: {},
       saving: false
@@ -24,20 +24,20 @@ export class ManageRegistrationPage extends React.Component {
 
   updateUserState(event) {
     const field = event.target.name;
-    let user = Object.assign({}, this.state.user);
-    user[field] = event.target.value;
-    return this.setState({user: user});
+    let registration = Object.assign({}, this.state.registration);
+    registration[field] = event.target.value;
+    return this.setState({registration: registration});
   }
 
-  userFormIsValid() {
+  registrationFormIsValid() {
     let formIsValid = true;
     let errors = {};
-    if (this.state.user.email.length === 0) {
+    if (this.state.registration.email.length === 0) {
       errors.email = 'Provide a valid email.';
       formIsValid = false;
     }
 
-    if (this.state.user.password.length === 0) {
+    if (this.state.registration.password.length === 0) {
       errors.password = 'Provide a valid password.';
       formIsValid = false;
     }
@@ -49,12 +49,12 @@ export class ManageRegistrationPage extends React.Component {
   saveUser(event) {
     event.preventDefault();
 
-    if (!this.userFormIsValid()) {
+    if (!this.registrationFormIsValid()) {
       return;
     }
 
     this.setState({saving: true});
-    this.props.actions.createUser(this.state.user)
+    this.props.actions.createUser(this.state.registration)
       .then(() => {
         if (this.props.registrationResult.success) {
           this.setState({saving: false});
@@ -85,7 +85,7 @@ export class ManageRegistrationPage extends React.Component {
       <div>
         <h3><strong>Registration</strong></h3>
         <RegistrationForm
-          user={this.state.user}
+          registration={this.state.registration}
           errors={this.state.errors}
           onSave={this.saveUser}
           onChange={this.updateUserState}
@@ -101,7 +101,7 @@ ManageRegistrationPage.contextTypes = {
 };
 
 function mapStateToProps(state) {
-  let user = {
+  let registration = {
     email: '',
     password: '',
     companyName: '',
@@ -109,7 +109,7 @@ function mapStateToProps(state) {
 
   return {
     registrationResult: state.registrationResult,
-    user: user
+    registration: registration
   };
 }
 
