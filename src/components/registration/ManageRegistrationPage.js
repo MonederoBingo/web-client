@@ -104,6 +104,7 @@ function mapStateToProps(state) {
   let registration = {
     email: '',
     password: '',
+    passwordConfirmation: '',
     companyName: '',
   };
 

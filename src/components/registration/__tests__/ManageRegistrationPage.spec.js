@@ -129,6 +129,7 @@ describe("ManageRegistrationPage", () => {
     expect(component.props().registration).toEqual({
       email:'',
       password:'',
+      passwordConfirmation: '',
       companyName:'',
     });
   });
