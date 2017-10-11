@@ -128,6 +128,7 @@ describe("ManageRegistrationPage", () => {
     // then
     expect(component.props().registration).toEqual({
       email:'',
+      username:'Admin',
       password:'',
       passwordConfirmation: '',
       companyName:'',

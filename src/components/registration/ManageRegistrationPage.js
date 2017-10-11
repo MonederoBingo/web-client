@@ -103,6 +103,7 @@ ManageRegistrationPage.contextTypes = {
 function mapStateToProps(state) {
   let registration = {
     email: '',
+    username: 'Admin',
     password: '',
     passwordConfirmation: '',
     companyName: '',
