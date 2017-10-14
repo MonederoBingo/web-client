@@ -52,30 +52,11 @@ export class ManageLoginPage extends React.Component {
     }
 
     this.setState({saving: true});
-    this.props.actions.loginUser(this.state.user)
+    return this.props.actions.loginUser(this.state.user)
       .then(() => {
         this.setState({saving: false});
         if (this.props.loginResult.success) {
-          this.getUserRole();
-        } else {
-          toastr.error(this.props.loginResult.message);
-        }
-      })
-      .catch(error => {
-        this.setState({saving: false});
-        toastr.error(error);
-      });
-  }
-
-  getUserRole() {
-    this.setState({saving: true});
-    this.props.actions.getUserRole()
-      .then(() => {
-        this.setState({saving: false});
-        if (this.props.loginResult.success) {
-          this.props.actions.clearJoggingTimes();
-          this.redirect('/myJoggingTimes');
-          toastr.success('Welcome!', '', {timeOut: 2000});
+          this.redirect('/pointsAwarding');
         } else {
           toastr.error(this.props.loginResult.message);
         }

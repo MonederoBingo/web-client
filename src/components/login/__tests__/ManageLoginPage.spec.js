@@ -7,17 +7,8 @@ import * as pointsAwardingActions from "../../../actions/pointsAwardingActions";
 import { MemoryRouter as Router } from 'react-router-dom';
 
 describe("ManageLoginPage", () => {
-  function withEvent(name, value) {
-    const event = {
-      target: {
-        name: name,
-        value: value,
-      }
-    };
-    return event;
-  }
-  it('should call push on router to redirect to pointsAwarding page', () => {
-    //given
+  let component, context;
+  beforeEach(() => {
     const actions = {
       loginUser: () => {
         return new Promise((resolve) => {
@@ -25,24 +16,32 @@ describe("ManageLoginPage", () => {
         });
       }
     };
-    let pushCalled = false;
-    const context = {
+    context = {
       router: {
-        push: () => {pushCalled = true;}
+        push: jest.fn()
       }
     };
-    const component = shallow(<ManageLoginPage actions={actions}/>, { context });
+    component = shallow(<ManageLoginPage actions={actions}/>, { context });
+  });
+  it('should call push on router to redirect to pointsAwarding page', () => {
+    //given
     const form = component.find('LoginForm');
     const user = {
       email: 'email',
       password: 'password'
     };
     component.setState({user});
+    component.setProps({
+      loginResult: {
+        success: true
+      }
+    });
 
     // when
-    form.props().onSave({preventDefault: () => {} });
+    return form.props().onSave({preventDefault: () => {} }).then(() => {
 
-    //then
-    console.log(pushCalled);
+      //then
+      expect(context.router.push).toHaveBeenCalledWith('/pointsAwarding');
+    });
   });
 });
