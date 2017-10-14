@@ -1,5 +1,5 @@
 import * as apiUtils from './apiUtils';
 
 export function awardPoints(pointsAwarding) {
-  apiUtils.callApiService("POST", "points", pointsAwarding);
+  return apiUtils.callApiService("POST", "points", pointsAwarding);
 }

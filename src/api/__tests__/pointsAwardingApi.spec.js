@@ -25,5 +25,20 @@ describe("points awarding api", () => {
       //then
       expect(apiUtils.callApiService).toBeCalledWith('POST', 'points', {phone: '333'});
     });
+    it("should return Promise", () => {
+      //given
+      jest.spyOn(apiUtils, 'callApiService');
+      apiUtils.callApiService.mockImplementation(() => {
+        return new Promise((resolve, reject) => {
+           resolve();
+        });
+      });
+
+      //when
+      const result = pointsAwardingApi.awardPoints({phone: '333'});
+
+      //then
+      expect(result.then).toBeInstanceOf(Function);
+    });
   });
 });

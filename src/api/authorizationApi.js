@@ -9,11 +9,11 @@ export function getAccessToken(user) {
 
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-    myHeaders.append("Authorization", "Basic Z3JlYXRhcHB4eXo6Z3JlYXRhcHB4eXpzZWNyZXQ=");
+    myHeaders.append("Authorization", "Basic bW9uZWRlcm9iaW5nbzptb25lZGVyb2Jpbmdvc2VjcmV0");
 
     const params = {
       grant_type: 'password',
-      client_id: 'greatappxyz',
+      client_id: 'monederobingo',
       username: user.email,
       password: user.password
     };
@@ -45,11 +45,11 @@ export function refreshToken(refreshToken) {
 
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-    myHeaders.append("Authorization", "Basic Z3JlYXRhcHB4eXo6Z3JlYXRhcHB4eXpzZWNyZXQ=");
+    myHeaders.append("Authorization", "Basic bW9uZWRlcm9iaW5nbzptb25lZGVyb2Jpbmdvc2VjcmV0");
 
     const params = {
       grant_type: 'refresh_token',
-      client_id: 'greatappxyz',
+      client_id: 'monederobingo',
       refresh_token: refreshToken
     };
 
