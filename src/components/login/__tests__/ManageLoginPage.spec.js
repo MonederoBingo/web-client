@@ -25,17 +25,24 @@ describe("ManageLoginPage", () => {
         });
       }
     };
-    const componentWithRouter = shallow(<Router><ManageLoginPage actions={actions}/></Router>);
-    const component = componentWithRouter.find(ManageLoginPage).dive();
+    let pushCalled = false;
+    const context = {
+      router: {
+        push: () => {pushCalled = true;}
+      }
+    };
+    const component = shallow(<ManageLoginPage actions={actions}/>, { context });
     const form = component.find('LoginForm');
     const user = {
       email: 'email',
       password: 'password'
     };
     component.setState({user});
-    const spy = jest.spyOn(componentWithRouter.context.router, 'push');
 
     // when
     form.props().onSave({preventDefault: () => {} });
+
+    //then
+    console.log(pushCalled);
   });
 });
