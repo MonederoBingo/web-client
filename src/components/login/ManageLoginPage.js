@@ -111,12 +111,6 @@ export class ManageLoginPage extends React.Component {
   }
 }
 
-ManageLoginPage.propTypes = {
-  actions: PropTypes.object.isRequired,
-  loginResult: PropTypes.object.isRequired,
-  user: PropTypes.object.isRequired
-};
-
 ManageLoginPage.contextTypes = {
   router: PropTypes.object
 };
