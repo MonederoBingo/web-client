@@ -41,7 +41,7 @@ describe("ManageLoginPage", () => {
     return form.props().onSave({preventDefault: () => {} }).then(() => {
 
       //then
-      expect(context.router.push).toHaveBeenCalledWith('/pointsAwarding');
+      expect(context.router.push).toHaveBeenCalledWith('/awardPoints');
     });
   });
 });

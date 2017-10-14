@@ -56,7 +56,7 @@ export class ManageLoginPage extends React.Component {
       .then(() => {
         this.setState({saving: false});
         if (this.props.loginResult.success) {
-          this.redirect('/pointsAwarding');
+          this.redirect('/awardPoints');
         } else {
           toastr.error(this.props.loginResult.message);
         }
