@@ -5,15 +5,25 @@ const apiUtils = require("../apiUtils");
 
 describe("points awarding api", () => {
   describe("awardPoints", () => {
-    it("should call apiUtils", () => {
+    it("should call apiUtils with correct method", () => {
       //given
       jest.spyOn(apiUtils, 'callApiService');
 
       //when
-      pointsAwardingApi.awardPoints({phone: '555'});
+      pointsAwardingApi.awardPoints({});
 
       //then
-      expect(apiUtils.callApiService).toBeCalledWith('POST', 'points', {phone: '555'});
+      expect(apiUtils.callApiService).toBeCalledWith('POST', expect.any(String), expect.anything());
+    });
+    it("should call apiUtils with correct path", () => {
+      //given
+      jest.spyOn(apiUtils, 'callApiService');
+
+      //when
+      pointsAwardingApi.awardPoints({});
+
+      //then
+      expect(apiUtils.callApiService).toBeCalledWith(expect.any(String), 'api/v1/points', expect.anything());
     });
     it("should call apiUtils using parameter as body argument", () => {
       //given
@@ -23,7 +33,7 @@ describe("points awarding api", () => {
       pointsAwardingApi.awardPoints({phone: '333'});
 
       //then
-      expect(apiUtils.callApiService).toBeCalledWith('POST', 'points', {phone: '333'});
+      expect(apiUtils.callApiService).toBeCalledWith(expect.any(String), expect.any(String), {phone: '333'});
     });
     it("should return Promise", () => {
       //given

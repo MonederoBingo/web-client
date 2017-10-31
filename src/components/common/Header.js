@@ -40,15 +40,7 @@ const Header = ({loading, authenticated, onLogout, isManagerOrAdmin}) => {
         <nav>
           <IndexLink to="/" activeClassName="active">Home</IndexLink>
           {" | "}
-          <Link to="/myJoggingTimes" activeClassName="active">My Jogging Times</Link>
-          {" | "}
           <Link to="/awardPoints" activeClassName="active">Points Awarding</Link>
-          {" | "}
-          <Link to="/myAvgSpeedPerWeek" activeClassName="active">Avg Speed Per Week</Link>
-          {isManagerOrAdmin() &&
-          " | "
-          }
-          {usersHeader}
           {" | "}
           <Link to="/myAccount" activeClassName="active">My Account</Link>
           <span style={dotsStyle}>{loading && <LoadingDots interval={100} dots={8}/>}</span>
