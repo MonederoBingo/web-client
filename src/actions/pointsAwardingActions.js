@@ -9,16 +9,12 @@ export function awardPointsSuccess(pointsAwarding) {
 export function awardPoints(pointsAwarding) {
   return function (dispatch) {
     dispatch(beginAjaxCall());
-    return new Promise((resolve, reject) => {
-      pointsAwardingApi.awardPoints(pointsAwarding).then(serviceResult => {
+      return pointsAwardingApi.awardPoints(pointsAwarding).then(serviceResult => {
         if(serviceResult.success) {
           dispatch({type: 'POINTS_AWARDING_SUCCESS', serviceResult});
-          resolve();
         } else {
           dispatch(ajaxCallError());
-          reject();
         }
-      });
     });
   };
 }

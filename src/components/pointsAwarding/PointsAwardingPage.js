@@ -9,7 +9,9 @@ export class PointsAwardingPage extends React.Component {
     super(props, context);
     this.state = {
       pointsAwarding: {
-        phoneNumber: ""
+        amount: 0,
+        phoneNumber: "",
+        saleKey: ""
       },
       saving: false,
     };
@@ -19,11 +21,15 @@ export class PointsAwardingPage extends React.Component {
   updateFieldsState(event) {
     const field = event.target.name;
     let pointsAwarding = Object.assign({}, this.state.pointsAwarding);
-    pointsAwarding[field] = event.target.value;
+    if(field === "amount") {
+      pointsAwarding[field] = parseFloat(event.target.value);
+    } else {
+      pointsAwarding[field] = event.target.value;
+    }
     return this.setState({pointsAwarding: pointsAwarding});
   }
   submit() {
-     this.props.actions.awardPoints();
+     this.props.actions.awardPoints(this.state.pointsAwarding);
   }
    render() {
      return (

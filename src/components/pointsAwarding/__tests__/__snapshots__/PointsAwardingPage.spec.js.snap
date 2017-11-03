@@ -7,7 +7,9 @@ Array [
     onSubmit={[Function]}
     pointsAwarding={
       Object {
+        "amount": 0,
         "phoneNumber": "",
+        "saleKey": "",
       }
     }
     saving={false}

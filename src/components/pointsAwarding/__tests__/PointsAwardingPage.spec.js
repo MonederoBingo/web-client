@@ -76,10 +76,10 @@ describe("PointsAwardingPage", () => {
     // then
     expect(component.instance().state.pointsAwarding.phoneNumber).toEqual("345");
   });
-  it("should update amount in state", () => {
+  it("should update amount in state from string to number", () => {
     // given
     const form = component.find('PointsAwardingForm');
-    const event = withEvent("amount", 100);
+    const event = withEvent("amount", "100");
 
     // when
     form.props().onChange(event);
@@ -113,12 +113,18 @@ describe("PointsAwardingPage", () => {
     const connectedComponent = mount( <Provider store={mockStore()}><ConnectedPointsAwardingPage /></Provider> );
     const component = connectedComponent.find('PointsAwardingPage');
     const form = component.find('PointsAwardingForm');
+    const pointsAwarding = {
+      phoneNumber: "",
+      amount: 0,
+      saleKey: ""
+    };
+    connectedComponent.setState({pointsAwarding});
     component.props().actions.awardPoints = jest.fn();
 
     // when
     form.props().onSubmit();
 
     // then
-    expect(component.props().actions.awardPoints).toHaveBeenCalled();
+    expect(component.props().actions.awardPoints).toHaveBeenCalledWith(pointsAwarding);
   });
 });
